@@ -3927,7 +3927,10 @@ NP_DICT.ms={
 "Semenyih": "Semenyih",
 "Seremban": "Seremban",
 "Areas": "Kawasan",
-"Developers": "Pemaju"
+"Developers": "Pemaju",
+"Use ⌘ + scroll to zoom the map": "Gunakan ⌘ + skrol untuk zum peta",
+"Use Ctrl + scroll to zoom the map": "Gunakan Ctrl + skrol untuk zum peta",
+"Use two fingers to move the map": "Gunakan dua jari untuk menggerakkan peta"
 };
-NP_RULES.ms=[[new RegExp("(\\d) sqft","g"),"$1 kaki persegi"],[new RegExp("<2>Worth</2>","g"),"<2>Bernilai</2>"],[new RegExp("^Reward (\\d) of (\\d): (.+), worth (RM [\\d,]+\\+), or (RM [\\d,]+\\+) Touch 'n Go eWallet credit$",""),"Ganjaran $1 daripada $2: $3, bernilai $4, atau kredit Touch 'n Go eWallet $5"],[new RegExp("^Show reward (\\d): ",""),"Tunjuk ganjaran $1: "],[new RegExp("^Go to slide (\\d+)$",""),"Pergi ke slaid $1"],[new RegExp(" \u00b7 (\\d+) projects?$","")," \u00b7 $1 projek"],[new RegExp("^No results for \"<0>(.*)</0>\" \u2014 try another area, project, or developer\\.$",""),"Tiada hasil untuk \"<0>$1</0>\" \u2014 cuba kawasan, projek atau pemaju lain."],[new RegExp("^\ud83d\udd0d Pulling results for \"(.*)\"\\.\\.\\.$",""),"\ud83d\udd0d Mencari hasil untuk \"$1\"..."]];
+NP_RULES.ms=[[new RegExp("(\\d) sqft","g"),"$1 kaki persegi"],[new RegExp("<2>Worth</2>","g"),"<2>Bernilai</2>"],[new RegExp("^Reward (\\d) of (\\d): (.+), worth (RM [\\d,]+\\+), or (RM [\\d,]+\\+) Touch 'n Go eWallet credit$",""),"Ganjaran $1 daripada $2: $3, bernilai $4, atau kredit Touch 'n Go eWallet $5"],[new RegExp("^Show reward (\\d): ",""),"Tunjuk ganjaran $1: "],[new RegExp("^Go to slide (\\d+)$",""),"Pergi ke slaid $1"],[new RegExp("^(\\d+) projects, from (RM [\\d.,]+[KM]?)$",""),"$1 projek, dari $2"],[new RegExp("^(\\d+) projects: ",""),"$1 projek: "],[new RegExp("^(.+), from (RM [\\d.,]+[KM]?)$",""),"$1, dari $2"],[new RegExp(" \u00b7 (\\d+) projects?$","")," \u00b7 $1 projek"],[new RegExp("^No results for \"<0>(.*)</0>\" \u2014 try another area, project, or developer\\.$",""),"Tiada hasil untuk \"<0>$1</0>\" \u2014 cuba kawasan, projek atau pemaju lain."],[new RegExp("^\ud83d\udd0d Pulling results for \"(.*)\"\\.\\.\\.$",""),"\ud83d\udd0d Mencari hasil untuk \"$1\"..."]];
 (function(){var s=document.createElement('style');s.id='np-css-ms';s.textContent="html[data-np-lang=\"ms\"] .section-nav .snav-link{padding-left:.7rem;padding-right:.7rem}";(document.head||document.documentElement).appendChild(s);})();
