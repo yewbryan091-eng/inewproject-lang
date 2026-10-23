@@ -287,9 +287,13 @@
   }
 
   /* ---- permanent badges: every winner's cards (anywhere) + its listing ribbon ---- */
+  var ro = window.ResizeObserver ? new ResizeObserver(function (list) {   // re-fit when a card appears or resizes (carousels, tabs)
+    list.forEach(function (en) { var e = en.target.querySelector('.npp-badge') || en.target.querySelector('.npp-ribbon'); if (e && e.__t) fit(e, e.__t); });
+  }) : null;
   function fit(e, tiers) { // longest text that fits; the box itself never grows past its container
+    if (e.__t !== tiers) { e.__t = tiers; if (ro && e.parentElement && !e.__o) { ro.observe(e.parentElement); e.__o = 1; } }
     for (var k = 0; k < tiers.length; k++) {
-      e.innerHTML = tiers[k];
+      if (e.innerHTML !== tiers[k]) e.innerHTML = tiers[k];
       if (!e.clientWidth || e.scrollWidth <= e.clientWidth + 1) return;
     }
   }
