@@ -5,6 +5,8 @@
 /* while open: the hero sits above the next sections (they used to draw over the old dropdown) */
 html.nps-open .hero-content { z-index: 60; }
 html.nps-open .hero-scroll { visibility: hidden !important; pointer-events: none !important; }   /* it has its own animation, so !important */
+/* Project of the Month's fixed "reopen" tag (bottom-left) overlapped the panel's corner on 1280-wide laptops; it comes back on close */
+html.nps-open .npp-pill { visibility: hidden !important; }
 
 .nps-panel { position: absolute; left: 0; right: 0; top: calc(100% + 10px); z-index: 5; box-sizing: border-box; background: #fff; border-radius: 20px; box-shadow: 0 24px 60px rgba(0, 0, 0, .28); padding: 16px 20px 14px; text-align: left; overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; font-family: 'DM Sans', sans-serif; color: #111; font-size: 15px; line-height: 1.4; }
 .nps-panel[hidden] { display: none; }
