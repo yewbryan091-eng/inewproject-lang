@@ -11,7 +11,7 @@
      RM 441K •        one project, e-Enquiry (red dot)
      ③ RM 335K        several projects (same site, or close together at this zoom)
 
-   v5 (24 Oct 2026): budget chips (Under RM400K/500K/600K, link #under500),
+   v5 (23 Oct 2026): budget chips (Under RM400K/500K/600K, link #under500),
    Klang + Pulau Indah area chips, "All Residential/Commercial/…" search fix,
    Price ⇄ Monthly switch (an estimate, homes only).
    ────────────────────────────────────────────────────────────────── */
