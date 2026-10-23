@@ -1,0 +1,285 @@
+/* ──────────────────────────────────────────────────────────────────
+   page_map.css — styles for /map/ (page_map_view.php)
+   v2 (Oct 2026): Leaflet → MapLibre GL + keyless OpenFreeMap tiles.
+   Same layout, same classes, same 16px floor. Changes vs v1:
+     • pins show the starting PRICE (same .emap-pin pill), in 3 kinds only:
+       price · price + red dot (e-Enquiry) · count + price (several projects)
+     • nearby projects merge into one count pin that splits as you zoom in
+     • popup rules target MapLibre instead of Leaflet
+     • Map / Satellite switch and zoom buttons restyled to match v1
+     • (v3) the map fills the screen; a full-screen button sits under + / −
+     • (v5) Budget row under Popular areas; Price ⇄ Monthly switch + estimate line on the map
+   ────────────────────────────────────────────────────────────────── */
+
+/* — Section frame — */
+.np-mapsec { padding: 0; margin: 0; }
+.np-map-wrap { position: relative; width: 100%; height: 460px; background: #eef0f3; }
+#npMap { width: 100%; height: 100%; z-index: 1; }
+@media (max-width: 768px){ .np-map-wrap { height: 360px; } }
+/* page_map.js sets the real height to fill the screen (these are the fallbacks). Full-screen button: */
+.np-map-wrap:fullscreen { background: #eef0f3; }
+/* where the browser has no real full screen (iPhones), the map box covers the window */
+.np-map-wrap.np-full { position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important;
+	width: 100% !important; height: 100% !important; z-index: 99999; }
+html.np-map-full, html.np-map-full body { overflow: hidden !important; }   /* page behind stays still */
+
+/* — Intro: guidance microcopy + quick-area chips — */
+.np-map-intro {
+	display: flex; align-items: center; gap: 14px 18px; flex-wrap: wrap;
+	padding: 14px 22px; background: #fff; border-bottom: 1px solid #eef0f3;
+}
+.np-map-guide {
+	margin: 0; font-family: 'DM Sans', system-ui, sans-serif; font-size: 13px;
+	color: #5a6275; display: inline-flex; align-items: center; gap: 7px;
+}
+.np-map-guide svg { width: 18px; height: 18px; flex: none; color: #d0021b; }
+.np-map-guide .np-dot {
+	display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: #d0021b;
+	box-shadow: 0 0 0 1.5px #fff, 0 0 0 2.5px rgba(11,16,32,.14); margin: 0 1px 0 3px; vertical-align: 0;
+}
+
+.np-map-chips {
+	display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-left: auto;
+}
+.np-chips-label {
+	font-family: 'DM Sans', system-ui, sans-serif; font-size: 13px; font-weight: 700;
+	color: #0b1020; margin-right: 2px; white-space: nowrap;
+}
+.np-chip {
+	font-family: 'DM Sans', system-ui, sans-serif; font-size: 13px; font-weight: 600;
+	color: #0b1020; background: #fff; border: 1px solid rgba(11,16,32,.16); border-radius: 999px;
+	padding: 7px 14px; cursor: pointer; transition: all .15s ease; white-space: nowrap;
+}
+.np-chip:hover { border-color: #d0021b; color: #d0021b; box-shadow: 0 3px 10px rgba(11,16,32,.1); }
+.np-chip.is-active { background: #d0021b; color: #fff; border-color: #d0021b; }
+/* Budget row: its own line under Popular areas, same quiet chips */
+.np-map-chips.np-budget { flex-basis: 100%; justify-content: flex-end; }
+@media (max-width: 768px){
+	.np-map-chips { margin-left: 0; width: 100%; overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; padding-bottom: 2px; }
+	.np-map-chips.np-budget { justify-content: flex-start; }
+}
+
+/* — Floating map overlays — */
+.np-map-overlay { position: absolute; z-index: 800; font-family: 'DM Sans', system-ui, sans-serif; }
+
+/* live result count — top-left */
+.np-map-count {
+	top: 14px; left: 14px; background: rgba(255,255,255,.96); color: #0b1020;
+	font-size: 16px; font-weight: 700; padding: 8px 13px; border-radius: 999px;
+	box-shadow: 0 3px 12px rgba(11,16,32,.16); display: inline-flex; align-items: center; gap: 6px;
+}
+.np-map-count b { color: #d0021b; }
+
+/* Price ⇄ Monthly — top-left, under the count */
+.np-map-mo {
+	top: 58px; left: 14px; display: inline-flex; padding: 3px; gap: 2px; border-radius: 999px;
+	background: rgba(255,255,255,.96); box-shadow: 0 3px 12px rgba(11,16,32,.16);
+}
+.np-map-mo button {
+	font-family: inherit; font-size: 13px; font-weight: 700; line-height: 1.2; color: #5a6275;
+	background: none; border: 0; border-radius: 999px; padding: 6px 12px; cursor: pointer; transition: all .15s ease;
+}
+.np-map-mo button:hover { color: #0b1020; }
+.np-map-mo button[aria-pressed="true"] { background: #0b1020; color: #fff; }
+/* the estimate line — shown whenever monthly figures are on screen */
+.np-map-est {
+	top: 98px; left: 14px; display: none; font-size: 12px; font-weight: 600; color: #5a6275;
+	background: rgba(255,255,255,.92); padding: 4px 10px; border-radius: 999px; white-space: nowrap;
+	box-shadow: 0 2px 8px rgba(11,16,32,.12);
+}
+.np-map-est.is-visible { display: block; }
+
+/* reset map — bottom right */
+.np-map-reset {
+	bottom: 18px; right: 14px; display: inline-flex; align-items: center; gap: 7px;
+	background: rgba(255,255,255,.96); color: #0b1020; border: 1px solid rgba(11,16,32,.12); cursor: pointer;
+	font-size: 16px; font-weight: 700; padding: 9px 14px; border-radius: 999px;
+	box-shadow: 0 3px 12px rgba(11,16,32,.16); transition: all .15s ease;
+}
+.np-map-reset:hover { border-color: #d0021b; color: #d0021b; }
+.np-map-reset svg { width: 16px; height: 16px; }
+
+/* empty-area feedback — center */
+.np-map-empty {
+	top: 50%; left: 50%; transform: translate(-50%, -50%); display: none; text-align: center;
+	background: rgba(255,255,255,.98); padding: 22px 26px; border-radius: 16px; max-width: 300px;
+	box-shadow: 0 12px 40px rgba(11,16,32,.22);
+}
+.np-map-empty.is-visible { display: block; animation: npPop .2s ease both; }
+.np-map-empty p { margin: 0 0 4px; font-weight: 700; font-size: 16px; color: #0b1020; }
+.np-map-empty span { display: block; font-size: 16px; color: #5a6275; margin-bottom: 14px; }
+.np-map-empty button {
+	background: #d0021b; color: #fff; border: 0; cursor: pointer; font-weight: 700;
+	font-size: 16px; padding: 9px 18px; border-radius: 999px; transition: background .15s ease;
+}
+.np-map-empty button:hover { background: #b00216; }
+@keyframes npPop {
+	from { opacity: 0; transform: translate(-50%, -50%) scale(.94); }
+	to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+/* "Zoom in to see more prices" — appears only while pins are shrunk to dots */
+.np-map-hint {
+	bottom: 18px; left: 50%; transform: translate(-50%, 6px); display: inline-flex; align-items: center; gap: 7px;
+	background: rgba(11,16,32,.72); color: #fff; font-size: 13px; font-weight: 600; white-space: nowrap;
+	padding: 8px 14px; border-radius: 999px; pointer-events: none; opacity: 0;
+	transition: opacity .35s ease, transform .35s ease;
+}
+.np-map-hint svg { width: 15px; height: 15px; flex: none; }
+.np-map-hint.is-visible { opacity: 1; transform: translate(-50%, 0); }
+@media (max-width: 768px){ .np-map-hint { bottom: 84px; } }
+
+/* — Project pin (price-pill style) —
+   The MapLibre marker element is .emap-pin-wrap (0×0, positioned by MapLibre);
+   the visible pill is the .emap-pin inside it, centred on the point. */
+.emap-pin-wrap { width: 0; height: 0; z-index: 2; }
+.emap-pin-wrap:hover { z-index: 900; }
+.emap-pin-wrap.is-front { z-index: 1001; }
+.emap-pin {
+	position: relative; display: inline-block; width: max-content;
+	background: #fff; border: 1px solid rgba(11,16,32,.14); border-radius: 999px;
+	padding: 6px 12px; font-family: 'DM Sans', system-ui, sans-serif; font-weight: 700;
+	font-size: 16px; line-height: 1.25; color: #0b1020; box-shadow: 0 3px 10px rgba(11,16,32,.18);
+	white-space: nowrap; cursor: pointer; transform: translate(-50%, -50%);
+	transition: transform .22s cubic-bezier(.16,1,.3,1), background .15s ease, color .15s ease, box-shadow .2s ease;
+	will-change: transform;
+}
+.emap-pin:hover {
+	border-color: rgba(11,16,32,.28);
+	box-shadow: 0 8px 20px rgba(11,16,32,.26);
+	transform: translate(-50%, -50%) scale(1.08);
+}
+.emap-pin.is-selected {
+	background: #d0021b; color: #fff; border-color: #d0021b;
+	box-shadow: 0 10px 24px rgba(208,2,27,.42);
+	transform: translate(-50%, -50%) scale(1.14);
+}
+/* red dot = e-Enquiry available */
+.emap-pin.is-gift::after {
+	content: ""; position: absolute; top: -3px; right: -3px; width: 10px; height: 10px; border-radius: 50%;
+	background: #d0021b; border: 2px solid #fff;
+}
+.emap-pin.is-selected.is-gift::after { background: #fff; border-color: #d0021b; }
+/* several projects (same site, or close together at this zoom): count badge */
+.emap-cnt {
+	display: inline-block; min-width: 20px; margin: 0 7px 0 -4px; padding: 1px 6px; border-radius: 999px;
+	background: #0b1020; color: #fff; font-size: 12px; font-weight: 800; text-align: center; vertical-align: 1px;
+}
+.emap-pin.is-selected .emap-cnt { background: #fff; color: #d0021b; }
+@keyframes emapPop {
+	from { opacity: 0; transform: translate(-50%, -40%) scale(.7); }
+	to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+/* `backwards` (not `both`) so hover / selected scale still work after the entrance */
+.emap-pin-wrap .emap-pin { animation: emapPop .35s cubic-bezier(.16,1,.3,1) backwards; }
+
+/* — MapLibre popup → mini project card — */
+.np-mapsec .maplibregl-popup { z-index: 1100; }
+.np-mapsec .maplibregl-popup-content {
+	border-radius: 14px; padding: 6px; box-shadow: 0 12px 32px rgba(11,16,32,.18);
+	font-family: 'DM Sans', system-ui, sans-serif;
+}
+.np-mapsec .maplibregl-popup-close-button {
+	top: 10px; right: 10px; width: 26px; height: 26px; border-radius: 50%; z-index: 2;
+	background: rgba(255,255,255,.95); color: #0b1020; font-size: 18px; line-height: 24px;
+	box-shadow: 0 2px 6px rgba(0,0,0,.25);
+}
+.np-mapsec .maplibregl-popup-close-button:hover { background: #fff; color: #d0021b; }
+.emap-pops.is-multi { max-height: 340px; overflow-y: auto; overscroll-behavior: contain; }   /* the next project peeks in: scroll for more */
+.emap-pop { margin: 8px 10px; width: 210px; }
+.emap-pop + .emap-pop { border-top: 1px solid #eef0f3; padding-top: 14px; }
+
+.emap-pop-img {
+	position: relative; width: 100%; height: 120px; object-fit: cover;
+	border-radius: 9px; background: #eee; margin-bottom: 9px; overflow: hidden;
+}
+.emap-pop-badge {
+	position: absolute; top: 8px; left: 8px; background: rgba(208,2,27,.95); color: #fff;
+	font-family: 'DM Sans', system-ui, sans-serif; font-size: 10px; font-weight: 800; letter-spacing: .2px;
+	padding: 4px 8px; border-radius: 999px; box-shadow: 0 2px 6px rgba(0,0,0,.2);
+}
+.emap-pop-name {
+	font-family: 'Fraunces', serif; font-weight: 600; font-size: 16px;
+	margin: 0 0 2px; line-height: 1.25; color: #0b1020;
+}
+.emap-pop-loc  { font-size: 12px; color: #5a6275; margin-bottom: 6px; }
+.emap-pop-type { font-weight: 600; font-size: 13px; color: #0b1020; margin-bottom: 2px; }
+.emap-pop-size { font-size: 12px; color: #5a6275; margin-bottom: 8px; }
+.emap-pop-price { font-size: 13px; font-weight: 700; color: #0b1020; margin-bottom: 10px; }
+.emap-pop-price b { color: #d0021b; }
+.emap-pop-mo { font-size: 12px; color: #5a6275; margin: -6px 0 10px; }
+.emap-pop-mo b { color: #0b1020; }
+.emap-pop-cta {
+	display: block; text-align: center; background: #d0021b; color: #fff !important; font-weight: 700;
+	font-size: 13px; padding: 9px; border-radius: 9px; text-decoration: none;
+	transition: background .15s ease;
+}
+.emap-pop-cta:hover { background: #b00216; }
+/* Phones: the same card, laid out side by side (photo left, details right,
+   button underneath) so it always fits inside the 360px mobile map. */
+@media (max-width: 768px){
+	.emap-pop {
+		display: grid; grid-template-columns: 96px 1fr; column-gap: 11px; align-items: start;
+		width: min(292px, calc(100vw - 72px)); margin: 6px;
+	}
+	.emap-pop-img { grid-column: 1; grid-row: 1 / span 5; height: 96px; margin: 0; }
+	.emap-pop-name, .emap-pop-loc, .emap-pop-type, .emap-pop-size, .emap-pop-price, .emap-pop-mo { grid-column: 2; }
+	.emap-pop-name { font-size: 15px; padding-right: 22px; }
+	.emap-pop-loc  { margin-bottom: 4px; }
+	.emap-pop-size { margin-bottom: 4px; }
+	.emap-pop-price { margin-bottom: 0; }
+	.emap-pop-mo { margin: 2px 0 0; }
+	.emap-pop-cta  { grid-column: 1 / -1; margin-top: 10px; }
+	.emap-pop-badge {
+		top: auto; left: 0; right: 0; bottom: 0; border-radius: 0; box-shadow: none;
+		text-align: center; font-size: 0; padding: 3px 0;
+	}
+	.emap-pop-badge::after { content: 'e-ENQUIRY'; font-size: 10px; letter-spacing: .3px; }
+	.emap-pop + .emap-pop { padding-top: 10px; }
+	.emap-pops.is-multi { max-height: 232px; }
+	.np-mapsec .maplibregl-popup-close-button { top: 8px; right: 8px; }
+	/* while a card is open, the bottom buttons step aside so nothing covers it */
+	.np-map-wrap .np-map-reset, .np-map-wrap .emap-layers { transition: opacity .2s ease; }
+	.np-map-wrap.has-card .np-map-reset,
+	.np-map-wrap.has-card .emap-layers { opacity: 0; pointer-events: none; }
+	.np-map-wrap .np-map-mo, .np-map-wrap .np-map-est { transition: opacity .2s ease; }
+	.np-map-wrap.has-card .np-map-mo,
+	.np-map-wrap.has-card .np-map-est { opacity: 0; pointer-events: none; }   /* the card carries its own estimate line */
+}
+
+/* — Map controls, matched to the v1 (Leaflet) look — */
+.np-mapsec .maplibregl-ctrl-top-right { top: 4px; right: 4px; }
+.np-mapsec .maplibregl-ctrl-group {
+	border: 2px solid rgba(0,0,0,.2); border-radius: 4px; box-shadow: none; background-clip: padding-box;
+}
+.np-mapsec .maplibregl-ctrl-group button { width: 30px; height: 30px; }
+.np-mapsec .maplibregl-ctrl-attrib {
+	font-family: 'DM Sans', system-ui, sans-serif; font-size: 12px; line-height: 1.4;
+	background: rgba(255,255,255,.8); padding: 0 5px;
+}
+.np-mapsec .maplibregl-ctrl-bottom-right .maplibregl-ctrl-attrib { margin: 0; }
+
+/* Map / Satellite switch — bottom-left, same place and shape as v1's layers button */
+.emap-layers {
+	bottom: 10px; left: 10px; background: #fff; border: 2px solid rgba(0,0,0,.2); border-radius: 5px;
+	background-clip: padding-box; overflow: hidden;
+}
+.emap-layers-btn {
+	display: flex; align-items: center; justify-content: center; width: 44px; height: 44px;
+	background: none; border: 0; cursor: pointer; color: #0b1020; padding: 0;
+}
+.emap-layers-btn svg { width: 24px; height: 24px; }
+.emap-layers-list { display: none; padding: 8px 12px 8px 10px; }
+.emap-layers-list label {
+	display: flex; align-items: center; gap: 8px; font-size: 16px; color: #0b1020;
+	cursor: pointer; padding: 3px 0; white-space: nowrap;
+}
+.emap-layers-list input { accent-color: #d0021b; margin: 0; }
+.emap-layers.is-open .emap-layers-btn { display: none; }
+.emap-layers.is-open .emap-layers-list { display: block; }
+
+@media (prefers-reduced-motion: reduce){
+	.emap-pin, .np-chip, .np-map-reset, .np-map-hint { transition: none; }
+	.emap-pin-wrap .emap-pin, .np-map-empty.is-visible { animation: none; }
+}
+@media (max-width: 480px){ .np-map-count .np-new { display: none; } }   /* keeps the budget count clear of + / − */
