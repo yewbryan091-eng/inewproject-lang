@@ -14,3 +14,8 @@ Do not edit these files by hand. The map files come from `inewproject.os/inewpro
 `np-potm_v1.js`: popup on the homepage and New Launches, plus a permanent "Project of the Month · <month>" badge on each winner's cards and listing.
 It is loaded from the inewproject.com Header Scripts box via jsDelivr, pinned to a commit. The images sit next to it; the site's own copies are the fallback.
 Off switch in the box: `window.NP_POTM_LIVE = false`.
+
+## search/ (homepage search v1, 24 Oct 2026)
+`np-search_v1.js` + `np-search_v1.css` + `thumbs/` (160×120 covers of the listings, so the panel loads ~10 KB per photo
+instead of the full image). Loaded by the "iNewProject · homepage search" block in the admin Header Scripts box.
+Source and runbook: `inewproject.os/projects/homepage-search/build/`.
