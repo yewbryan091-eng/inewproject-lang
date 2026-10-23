@@ -240,6 +240,7 @@
 			b.setAttribute('aria-pressed', String((b.dataset.mo === '1') === monthlyOn));
 		});
 		var on = elBudget && elBudget.querySelector('.is-active');
+		if(elBudget && !on) elBudget.scrollLeft = 0;
 		if(on && elBudget.scrollWidth > elBudget.clientWidth){
 			var rr = elBudget.getBoundingClientRect(), cr = on.getBoundingClientRect();
 			if(cr.right > rr.right || cr.left < rr.left) elBudget.scrollLeft += cr.left - rr.left - 12;
@@ -500,7 +501,7 @@
 			(built ? '<div class="emap-pop-size">' + esc(built) + ' sq.ft</div>' : '') +
 			(p._n  ? '<div class="emap-pop-price">From <b>' + esc(priceShort(p._n)) + '</b></div>'
 			       : '<div class="emap-pop-price"><b>Enquire the Price</b></div>') +
-			(monthlyOn && p._mo ? '<div class="emap-pop-mo">est. <b>RM' + commas(p._mo) + '/mo</b> · ' + esc(EST_LINE.replace(/^est\. /, '')) + '</div>' : '') +
+			(monthlyOn && p._mo ? '<div class="emap-pop-mo">est. <b>RM' + commas(p._mo) + '/mo</b><span>' + esc(EST_LINE.replace(/^est\. /, '')) + '</span></div>' : '') +
 			'<a class="emap-pop-cta" href="' + esc(p.url || '#') + '">View Project</a>' +
 		'</div>';
 	}

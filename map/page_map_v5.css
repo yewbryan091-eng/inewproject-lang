@@ -209,6 +209,7 @@ html.np-map-full, html.np-map-full body { overflow: hidden !important; }   /* pa
 .emap-pop-price b { color: #d0021b; }
 .emap-pop-mo { font-size: 12px; color: #5a6275; margin: -6px 0 10px; }
 .emap-pop-mo b { color: #0b1020; }
+.emap-pop-mo span { display: block; }   /* the assumptions on their own line */
 .emap-pop-cta {
 	display: block; text-align: center; background: #d0021b; color: #fff !important; font-weight: 700;
 	font-size: 13px; padding: 9px; border-radius: 9px; text-decoration: none;
