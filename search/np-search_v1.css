@@ -97,9 +97,8 @@ html.nps-hasq .nps-clr { display: flex; }
 	.nps-tabs::-webkit-scrollbar { display: none; }
 	.nps-browse { grid-template-columns: minmax(0, 1fr); gap: 18px; }
 	.nps-browse .nps-side { order: -1; }
-	.nps-mapcard { grid-template-columns: 112px minmax(0, 1fr); align-items: center; }
-	.nps-mapcard svg { height: 100%; min-height: 96px; object-fit: cover; }
-	.nps-mc { padding: 10px 12px; }
+	.nps-mapcard svg { height: 150px; }   /* full width; the map is cropped to its middle band, where the pins are */
+	.nps-mc { padding: 10px 12px 12px; }
 	.nps-mt { font-size: 15px; }
 	.nps-ms { font-size: 12.5px; }
 	.nps-cta { margin-top: 6px; padding: 6px 12px; font-size: 12.5px; }
