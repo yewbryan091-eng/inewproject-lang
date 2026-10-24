@@ -15,6 +15,12 @@ Do not edit these files by hand. The map files come from `inewproject.os/inewpro
 It is loaded from the inewproject.com Header Scripts box via jsDelivr, pinned to a commit. The images sit next to it; the site's own copies are the fallback.
 Off switch in the box: `window.NP_POTM_LIVE = false`.
 
+## search/ v2 (25 Oct 2026): homepage + New Launches
+`np-search_v2.js` + `np-search_v2.css`: the same search panel on the homepage and on New Launches (/project/), plus the
+New Launches round search bar and drawing. `nl/nl-house_*.webp` = the drawing (a house with a family on its path; the
+red line that runs to it is drawn by the script). Loaded with SRI by the "iNewProject . search v2" block in the admin
+Header Scripts box. v1 files stay for the record (older pinned commits still use them).
+
 ## search/ (homepage search v1, 24 Oct 2026)
 `np-search_v1.js` + `np-search_v1.css` + `thumbs/` (160×120 covers of the listings, so the panel loads ~10 KB per photo
 instead of the full image). Loaded by the "iNewProject · homepage search" block in the admin Header Scripts box.

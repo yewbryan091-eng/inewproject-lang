@@ -3936,6 +3936,7 @@ NP_DICT.ms={
 "Data from": "Data daripada",
 "Area, project, developer or budget": "Kawasan, projek, pemaju atau bajet",
 "Area, project or budget": "Kawasan, projek atau bajet",
+"Property Type": "Jenis Hartanah",
 "NEW": "BAHARU",
 "Search suggestions": "Cadangan carian",
 "Close search": "Tutup carian",

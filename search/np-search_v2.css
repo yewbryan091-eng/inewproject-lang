@@ -1,0 +1,142 @@
+/* iNewProject homepage search v1 (24 Oct 2026): the panel under the search bar + the phone full-screen sheet.
+   The bar itself (Map button, hidden type box) is styled inline in the Header Scripts block, so it never flashes.
+   Every class starts with nps- so no site CSS can reach it. Source: inewproject.os/projects/homepage-search/build/ */
+
+/* while open: the hero sits above the next sections (they used to draw over the old dropdown) */
+html.nps-open .hero-content { z-index: 60; }
+html.nps-open .hero-scroll { visibility: hidden !important; pointer-events: none !important; }   /* it has its own animation, so !important */
+/* Project of the Month's fixed "reopen" tag (bottom-left) overlapped the panel's corner on 1280-wide laptops; it comes back on close */
+html.nps-open .npp-pill { visibility: hidden !important; }
+
+.nps-panel { position: absolute; left: 0; right: 0; top: calc(100% + 10px); z-index: 5; box-sizing: border-box; background: #fff; border-radius: 20px; box-shadow: 0 24px 60px rgba(0, 0, 0, .28); padding: 16px 20px 14px; text-align: left; overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; font-family: 'DM Sans', sans-serif; color: #111; font-size: 15px; line-height: 1.4; }
+.nps-panel[hidden] { display: none; }
+.nps-panel * { box-sizing: border-box; }
+.nps-panel button { font-family: inherit; }
+.nps-panel a { text-decoration: none; color: inherit; }
+.nps-panel :focus-visible { outline: 3px solid #1f6feb; outline-offset: 2px; }
+
+/* type tabs */
+.nps-tabs { display: flex; flex-wrap: wrap; gap: 6px; padding-bottom: 12px; border-bottom: 1px solid #ececec; }
+.nps-tab { font-size: 13.5px; font-weight: 600; border: 1px solid #e3e3e3; background: #fff; color: #333; border-radius: 999px; padding: 7px 13px; cursor: pointer; white-space: nowrap; line-height: 1.2; }
+.nps-tab small { color: #999; font-weight: 500; margin-left: 4px; font-size: 12px; }
+.nps-tab[aria-pressed="true"] { background: #111; border-color: #111; color: #fff; }
+.nps-tab[aria-pressed="true"] small { color: #bbb; }
+.nps-tab.nps-rew { border-color: #f3c6cc; color: #D0021B; }
+.nps-tab.nps-rew[aria-pressed="true"] { background: #D0021B; border-color: #D0021B; color: #fff; }
+.nps-tab.nps-rew[aria-pressed="true"] small { color: #ffd6db; }
+
+/* browse view */
+.nps-browse { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 22px; padding-top: 14px; }
+.nps-col { display: grid; gap: 16px; align-content: start; }
+.nps-h { font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: #6f6f6f; font-weight: 700; margin: 0 0 8px; }
+.nps-chips { display: flex; flex-wrap: wrap; gap: 7px; }
+.nps-chip { font-size: 14px; font-weight: 600; border: 1px solid #ececec; background: #f6f6f6; color: #111; border-radius: 10px; padding: 8px 11px; cursor: pointer; display: inline-flex; gap: 6px; align-items: baseline; line-height: 1.2; text-align: left; }
+.nps-chip small { color: #777; font-weight: 500; font-size: 12.5px; }
+.nps-chip:hover { border-color: #bbb; background: #fff; }
+.nps-states { display: grid; gap: 14px; }
+.nps-state { display: grid; grid-template-columns: 118px minmax(0, 1fr); gap: 10px; align-items: start; }
+.nps-sbtn { font-size: 14px; font-weight: 700; text-align: left; border: 0; background: none; padding: 7px 0 0; cursor: pointer; color: #111; line-height: 1.25; }
+.nps-sbtn small { display: block; font-weight: 500; color: #777; font-size: 12.5px; margin-top: 2px; }
+
+/* map card */
+.nps-mapcard { display: grid; border: 1px solid #ececec; border-radius: 16px; overflow: hidden; background: #fff; align-self: start; }
+.nps-mapcard svg { display: block; width: 100%; height: auto; background: #eef1ea; }
+.nps-mc { padding: 12px 14px 14px; display: grid; gap: 2px; }
+.nps-mt { font-size: 16px; font-weight: 700; }
+.nps-ms { font-size: 13.5px; color: #6f6f6f; }
+.nps-cta { margin-top: 8px; justify-self: start; font-size: 13.5px; font-weight: 700; color: #fff; background: #111; border-radius: 999px; padding: 8px 14px; }
+.nps-mapcard:hover .nps-cta { background: #D0021B; }
+
+/* results */
+.nps-res { padding-top: 10px; display: grid; gap: 2px; }
+.nps-note { font-size: 13.5px; color: #6f6f6f; margin: 2px 0 6px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.nps-x { font-size: 12.5px; font-weight: 600; border: 1px solid #e3e3e3; border-radius: 999px; padding: 4px 10px; background: #f6f6f6; cursor: pointer; color: #111; line-height: 1.2; }
+.nps-fz b { color: #111; }
+.nps-place { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 12px; border-radius: 12px; background: #f6f6f6; margin-bottom: 4px; cursor: pointer; border: 1px solid transparent; color: #111; text-align: left; width: 100%; font-size: 15px; line-height: 1.3; }
+.nps-place:hover, .nps-place.nps-hl { border-color: #dcdcdc; }
+.nps-place .nps-k { font-size: 13px; color: #777; margin-left: 4px; }
+.nps-place .nps-c { font-size: 13px; color: #555; white-space: nowrap; }
+.nps-row { display: grid; grid-template-columns: 72px minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 8px; border-radius: 12px; }
+.nps-row:hover, .nps-row.nps-hl { background: #f5f5f5; }
+.nps-row img { width: 72px; height: 54px; object-fit: cover; border-radius: 8px; display: block; background: #eee; }
+.nps-rt { min-width: 0; display: grid; gap: 1px; }
+.nps-nm { font-weight: 700; font-size: 15px; line-height: 1.25; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nps-nm mark { background: none; color: #D0021B; }
+.nps-sb { font-size: 13px; color: #6f6f6f; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nps-pr { text-align: right; display: grid; gap: 4px; justify-items: end; }
+.nps-fr { font-size: 12px; color: #777; white-space: nowrap; }
+.nps-fr b { font-size: 14.5px; color: #111; font-weight: 700; }
+.nps-tag { font-size: 11px; font-weight: 700; color: #D0021B; background: #fdecee; border-radius: 6px; padding: 2px 7px; white-space: nowrap; }
+.nps-foot { display: flex; flex-wrap: wrap; gap: 8px; justify-content: space-between; align-items: center; border-top: 1px solid #ececec; margin-top: 8px; padding-top: 12px; font-size: 12.5px; color: #6f6f6f; }
+.nps-foot a { font-size: 14px; font-weight: 700; color: #D0021B; }
+.nps-empty { padding: 14px 6px 4px; display: grid; gap: 12px; }
+.nps-empty p { margin: 0; }
+.nps-none { font-weight: 700; }
+.nps-none2 { color: #6f6f6f; font-size: 14px; }
+.nps-load { padding: 18px 6px; color: #6f6f6f; margin: 0; }
+
+/* back + clear buttons in the bar (back shows only in the phone sheet) */
+.nps-back, .nps-clr { display: none; border: 0; background: none; padding: 8px; margin: 0; cursor: pointer; color: #111; flex: none; align-items: center; justify-content: center; }
+.nps-back svg, .nps-clr svg { width: 22px; height: 22px; display: block; }
+.nps-clr svg { width: 18px; height: 18px; color: #888; }
+html.nps-hasq .nps-clr { display: flex; }
+
+/* phone: the panel becomes a full-screen sheet */
+@media (max-width: 649.9px) {
+	html.nps-sheet, html.nps-sheet body { overflow: hidden !important; }
+	html.nps-sheet .hero-content { z-index: 10002; }
+	html.nps-sheet #searchWrap { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 10002; margin: 0; width: auto; max-width: none; background: #fff; display: flex; flex-direction: column; padding-top: env(safe-area-inset-top, 0px); }
+	html.nps-sheet #searchWrap form { flex: none; }
+	html.nps-sheet #searchWrap .search-bar { flex-wrap: nowrap; border-radius: 0; box-shadow: none; border-bottom: 1px solid #ececec; min-height: 60px; padding: 8px 10px 8px 4px; margin: 0; }
+	html.nps-sheet #searchWrap .search-bar .search-icon, html.nps-sheet #searchWrap .search-bar .nps-map { display: none; }
+	html.nps-sheet .nps-back { display: flex; }
+	html.nps-sheet #searchWrap .search-bar input { width: auto; flex: 1 1 auto; padding: 10px 4px; }
+	html.nps-sheet #searchWrap .search-bar .search-btn { flex: none; width: auto; min-height: 40px; padding: 8px 16px; }
+	html.nps-sheet .nps-panel { position: static; flex: 1 1 auto; border-radius: 0; box-shadow: none; max-height: none !important; padding: 12px 16px calc(24px + env(safe-area-inset-bottom, 0px)); }
+	.nps-tabs { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin: 0 -16px; padding: 0 16px 12px; }
+	.nps-tabs::-webkit-scrollbar { display: none; }
+	.nps-browse { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+	.nps-browse .nps-side { order: -1; }
+	.nps-mapcard svg { height: 150px; }   /* full width; the map is cropped to its middle band, where the pins are */
+	.nps-mc { padding: 10px 12px 12px; }
+	.nps-mt { font-size: 15px; }
+	.nps-ms { font-size: 12.5px; }
+	.nps-cta { margin-top: 6px; padding: 6px 12px; font-size: 12.5px; }
+	.nps-state { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+	.nps-sbtn { padding: 0; }
+	.nps-sbtn small { display: inline; margin: 0 0 0 6px; }
+	.nps-row { grid-template-columns: 64px minmax(0, 1fr); gap: 3px 12px; align-items: start; padding: 8px 4px; }
+	.nps-row img { width: 64px; height: 48px; grid-row: 1 / span 2; }
+	.nps-pr { grid-column: 2; justify-items: start; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+	.nps-chip { padding: 9px 12px; }
+}
+@media (prefers-reduced-motion: reduce) { .nps-panel { scroll-behavior: auto; } }
+
+/* ---------- New Launches (/project/, html.nps-nl), added 25 Oct 2026 ----------
+   The round bar, white band and phone card are styled inline in the Header Scripts block (no flash). Here: the drawing,
+   the panel's layering, and the phone full-screen sheet. This file can load before or after that inline block, so the
+   sheet rules carry one more class (html.nps-on.nps-sheet.nps-nl) than the inline ones they override. */
+html.nps-nl #pagetitle > .container { --nps-css: 1; }   /* tells the script this file is in, before it places the drawing */
+.nps-art { position: absolute; right: 13.5px; bottom: 0; width: 460px; z-index: 1; pointer-events: none; }
+html.nps-nl .nps-art { transition: none !important; }   /* the site animates boxes; the script measures this one right after placing it */
+/* the site sizes buttons inside the search row (width 100%); the back arrow and the clear ✕ keep their own size */
+html.nps-on.nps-nl #searchForm .nps-back, html.nps-on.nps-nl #searchForm .nps-clr { width: auto; min-width: 0; height: auto; flex: none; margin: 0; }
+.nps-art img { display: block; width: 100%; height: auto; opacity: 0; transition: opacity .5s ease; }
+.nps-art svg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible; visibility: hidden; }
+.nps-art.nps-art-in img { opacity: 1; }
+.nps-art.nps-art-in svg { visibility: visible; }
+@media (max-width: 1399.9px) { .nps-art { width: 400px; } }
+@media (max-width: 1199.9px) { .nps-art { bottom: auto; top: 0; width: 260px; } }   /* beside the title: the script sets top + width */
+@media (prefers-reduced-motion: reduce) { .nps-art img { transition: none; } }
+html.nps-open.nps-nl #pagetitle { position: relative; z-index: 60; }
+#projectListing .sec-box.nps-bsw > #filter-trigger { position: static; margin: -6px 0 16px auto; }   /* BM: own row, not over the switch */
+@media (max-width: 649.9px) {
+	html.nps-on.nps-sheet.nps-nl #pagetitle { z-index: 10002; }
+	html.nps-on.nps-sheet.nps-nl #searchForm { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 10002; margin: 0; max-width: none; border: 0; border-radius: 0; box-shadow: none; padding: env(safe-area-inset-top, 0px) 0 0; display: flex; flex-direction: column; background: #fff; }
+	html.nps-on.nps-sheet.nps-nl #searchForm > .row { flex: none; flex-wrap: nowrap; align-items: center; gap: 4px; border-bottom: 1px solid #ececec; min-height: 60px; padding: 8px 10px 8px 4px; }
+	html.nps-on.nps-sheet.nps-nl #searchForm .filtercol, html.nps-on.nps-sheet.nps-nl #searchForm .np-searchpill-ico { display: none; }
+	html.nps-on.nps-sheet.nps-nl #searchForm .scol { flex: 1 1 auto; }
+	html.nps-on.nps-sheet.nps-nl #searchForm .np-searchpill { height: 44px; padding: 0 2px; }
+	html.nps-on.nps-sheet.nps-nl #searchForm .submitcol { flex: none; }
+	html.nps-on.nps-sheet.nps-nl #searchSubmit { width: auto; min-width: 0; height: 40px; padding: 0 16px; }
+}
