@@ -3937,6 +3937,8 @@ NP_DICT.zh={
 "Area, project, developer or budget": "地区、项目、发展商或预算",
 "Area, project or budget": "地区、项目或预算",
 "Property Type": "产业类型",
+"Clear all": "全部清除",
+"Active filters": "已选筛选",
 "NEW": "新",
 "Search suggestions": "搜索建议",
 "Close search": "关闭搜索",

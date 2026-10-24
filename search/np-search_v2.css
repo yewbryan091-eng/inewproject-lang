@@ -130,6 +130,21 @@ html.nps-on.nps-nl #searchForm .nps-back, html.nps-on.nps-nl #searchForm .nps-cl
 @media (prefers-reduced-motion: reduce) { .nps-art img { transition: none; } }
 html.nps-open.nps-nl #pagetitle { position: relative; z-index: 60; }
 #projectListing .sec-box.nps-bsw > #filter-trigger { position: static; margin: -6px 0 16px auto; }   /* BM: own row, not over the switch */
+/* filters in use: pills under the bar, and the number on the Filter button (instead of the site's corner dot) */
+.nps-pills { position: relative; z-index: 2; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; max-width: 800px; margin-top: 14px; font-family: 'DM Sans', sans-serif; }
+.nps-pill { display: inline-flex; align-items: center; gap: 6px; max-width: 100%; height: 34px; padding: 0 10px 0 14px; border: 1px solid #e3e3e3; border-radius: 999px; background: #fff; color: #111; font-size: 14px; font-weight: 600; line-height: 1; text-decoration: none; white-space: nowrap; }
+.nps-pill span { overflow: hidden; text-overflow: ellipsis; }
+.nps-pill svg { width: 14px; height: 14px; flex: none; color: #777; }
+.nps-pill:hover { border-color: #111; color: #111; text-decoration: none; }
+.nps-pill:hover svg { color: #D0021B; }
+.nps-pills .nps-pill.nps-clear, .nps-pills .nps-pill.nps-clear:hover { border-color: transparent; background: none; padding: 0 6px; color: #D0021B; font-weight: 700; }
+.nps-pills .nps-pill.nps-clear:hover { text-decoration: underline; }
+.nps-fc { display: inline-grid; place-items: center; min-width: 20px; height: 20px; padding: 0 6px; border-radius: 999px; background: #D0021B; color: #fff; font-size: 12px; font-weight: 700; line-height: 1; }
+html.nps-on.nps-nl #searchfilter::after { display: none; }   /* the site's corner dot: replaced by the number */
+html.nps-on.nps-nl.nps-hasf #searchfilter { gap: 6px; padding: 0 12px; }   /* icon + Filter/Penapis/筛选 + number fit in 140 px */
+@media (max-width: 1399.9px) { .nps-pills { max-width: 690px; } }
+@media (max-width: 1199.9px) { .nps-pills { max-width: none; } }
+@media (max-width: 649.9px) { .nps-pills { margin-top: 12px; gap: 6px; } .nps-pill { height: 32px; font-size: 13.5px; } }
 @media (max-width: 649.9px) {
 	html.nps-on.nps-sheet.nps-nl #pagetitle { z-index: 10002; }
 	html.nps-on.nps-sheet.nps-nl #searchForm { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 10002; margin: 0; max-width: none; border: 0; border-radius: 0; box-shadow: none; padding: env(safe-area-inset-top, 0px) 0 0; display: flex; flex-direction: column; background: #fff; }

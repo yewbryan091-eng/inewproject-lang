@@ -3937,6 +3937,8 @@ NP_DICT.ms={
 "Area, project, developer or budget": "Kawasan, projek, pemaju atau bajet",
 "Area, project or budget": "Kawasan, projek atau bajet",
 "Property Type": "Jenis Hartanah",
+"Clear all": "Kosongkan semua",
+"Active filters": "Penapis aktif",
 "NEW": "BAHARU",
 "Search suggestions": "Cadangan carian",
 "Close search": "Tutup carian",
