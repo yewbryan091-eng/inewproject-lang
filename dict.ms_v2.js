@@ -3944,6 +3944,8 @@ NP_DICT.ms={
 "All Industrial": "Semua Perindustrian",
 "All Land": "Semua Tanah",
 "NEW": "BAHARU",
+"Try a project, area, developer or price.": "Cuba projek, kawasan, pemaju atau harga.",
+"See all on New Launches": "Lihat semua di Projek Baharu",
 "Search suggestions": "Cadangan carian",
 "Close search": "Tutup carian",
 "Clear search": "Kosongkan carian",

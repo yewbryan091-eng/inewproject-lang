@@ -3944,6 +3944,8 @@ NP_DICT.zh={
 "All Industrial": "所有工业",
 "All Land": "所有土地",
 "NEW": "新",
+"Try a project, area, developer or price.": "试试项目、地区、发展商或价格。",
+"See all on New Launches": "在新楼盘查看全部",
 "Search suggestions": "搜索建议",
 "Close search": "关闭搜索",
 "Clear search": "清除搜索",
