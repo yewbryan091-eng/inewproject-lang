@@ -117,7 +117,7 @@ html.nps-hasq .nps-clr { display: flex; }
    the panel's layering, and the phone full-screen sheet. This file can load before or after that inline block, so the
    sheet rules carry one more class (html.nps-on.nps-sheet.nps-nl) than the inline ones they override. */
 html.nps-nl #pagetitle > .container { --nps-css: 1; }   /* tells the script this file is in, before it places the drawing */
-.nps-art { position: absolute; right: 13.5px; bottom: 0; width: 460px; z-index: 1; pointer-events: none; }
+.nps-art { position: absolute; right: 13.5px; bottom: 0; width: var(--nps-artw, 460px); z-index: 1; pointer-events: none; }   /* --nps-artw: set in the Header Scripts block */
 html.nps-nl .nps-art { transition: none !important; }   /* the site animates boxes; the script measures this one right after placing it */
 /* the site sizes buttons inside the search row (width 100%); the back arrow and the clear ✕ keep their own size */
 html.nps-on.nps-nl #searchForm .nps-back, html.nps-on.nps-nl #searchForm .nps-clr { width: auto; min-width: 0; height: auto; flex: none; margin: 0; }
@@ -125,13 +125,12 @@ html.nps-on.nps-nl #searchForm .nps-back, html.nps-on.nps-nl #searchForm .nps-cl
 .nps-art svg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible; visibility: hidden; }
 .nps-art.nps-art-in img { opacity: 1; }
 .nps-art.nps-art-in svg { visibility: visible; }
-@media (max-width: 1399.9px) { .nps-art { width: 400px; } }
 @media (max-width: 1199.9px) { .nps-art { bottom: auto; top: 0; width: 260px; } }   /* beside the title: the script sets top + width */
 @media (prefers-reduced-motion: reduce) { .nps-art img { transition: none; } }
 html.nps-open.nps-nl #pagetitle { position: relative; z-index: 60; }
 #projectListing .sec-box.nps-bsw > #filter-trigger { position: static; margin: -6px 0 16px auto; }   /* BM: own row, not over the switch */
 /* filters in use: pills under the bar, and the number on the Filter button (instead of the site's corner dot) */
-.nps-pills { position: relative; z-index: 2; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; max-width: 800px; margin-top: 14px; font-family: 'DM Sans', sans-serif; }
+.nps-pills { position: relative; z-index: 2; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; max-width: calc(100% - var(--nps-artw, 460px) - 48px); margin-top: 14px; font-family: 'DM Sans', sans-serif; }
 .nps-pill { display: inline-flex; align-items: center; gap: 6px; max-width: 100%; height: 34px; padding: 0 10px 0 14px; border: 1px solid #e3e3e3; border-radius: 999px; background: #fff; color: #111; font-size: 14px; font-weight: 600; line-height: 1; text-decoration: none; white-space: nowrap; }
 .nps-pill span { overflow: hidden; text-overflow: ellipsis; }
 .nps-pill svg { width: 14px; height: 14px; flex: none; color: #777; }
@@ -142,7 +141,6 @@ html.nps-open.nps-nl #pagetitle { position: relative; z-index: 60; }
 .nps-fc { display: inline-grid; place-items: center; min-width: 20px; height: 20px; padding: 0 6px; border-radius: 999px; background: #D0021B; color: #fff; font-size: 12px; font-weight: 700; line-height: 1; }
 html.nps-on.nps-nl #searchfilter::after { display: none; }   /* the site's corner dot: replaced by the number */
 html.nps-on.nps-nl.nps-hasf #searchfilter { gap: 6px; padding: 0 12px; }   /* icon + Filter/Penapis/筛选 + number fit in 140 px */
-@media (max-width: 1399.9px) { .nps-pills { max-width: 690px; } }
 @media (max-width: 1199.9px) { .nps-pills { max-width: none; } }
 @media (max-width: 649.9px) { .nps-pills { margin-top: 12px; gap: 6px; } .nps-pill { height: 32px; font-size: 13.5px; } }
 @media (max-width: 649.9px) {
