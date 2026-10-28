@@ -31,3 +31,5 @@ Source and runbook: `inewproject.os/projects/homepage-search/build/`.
 rooms row, layout / facing / view / row, the Enquire button); the floor plan on the right stays the site's own and is
 only sized so it always fits the window. Never shows "RM 0" (also in Step 2 and the on-page receipt) or empty "—" values.
 Loaded from the admin Header Scripts box via jsDelivr with SRI. Off switch: `window.NP_UNIT_LIVE = false`.
+`np-unit_v1-1.js`: the steps line, its numbers and the availability pill at 14 px like all reading text; narrow phones
+show "1 Unit details of 2"; room numbers stay level when a label wraps; a layout written as "null" counts as empty.
