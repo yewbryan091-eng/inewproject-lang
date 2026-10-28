@@ -25,3 +25,9 @@ Header Scripts box. v1 files stay for the record (older pinned commits still use
 `np-search_v1.js` + `np-search_v1.css` + `thumbs/` (160×120 covers of the listings, so the panel loads ~10 KB per photo
 instead of the full image). Loaded by the "iNewProject · homepage search" block in the admin Header Scripts box.
 Source and runbook: `inewproject.os/projects/homepage-search/build/`.
+
+## unit/ — e-Enquiry unit popup (28 Oct 2026)
+`np-unit_v1.js`: the "Step 1 of 2" unit popup on every e-Enquiry page. A new left side (steps, the unit, its price, the
+rooms row, layout / facing / view / row, the Enquire button); the floor plan on the right stays the site's own and is
+only sized so it always fits the window. Never shows "RM 0" (also in Step 2 and the on-page receipt) or empty "—" values.
+Loaded from the admin Header Scripts box via jsDelivr with SRI. Off switch: `window.NP_UNIT_LIVE = false`.
