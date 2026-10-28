@@ -1,13 +1,13 @@
 /*
  * iNewProject e-Enquiry "Property Information" as a price headline + key-facts row (v1, 26 Oct 2026; v1.2, 28 Oct 2026).
- *   Bryan picked option D (25 Oct): price as the headline with the developer beside it, one ruled row of key facts with
+ *   The chosen design (25 Oct): price as the headline with the developer beside it, one ruled row of key facts with
  *   brand-red line icons, the rest as a two-column list. Titles in black and a little bigger than the site's tiles
  *   (26 Oct); answers keep the site's own size and weight. Modelled on Rightmove's new-homes page.
  *   v1.2 (28 Oct; v1.1 was a draft, never in a box): every fact under the price is a white box with a clear outline, title above answer: the four icon facts
- *   four to a row, the rest two to a row (one per row on phones; an odd last box stays on the left). Bryan: "the below with
- *   no box is the confusing part", "make this into 4 boxes", "make the line darker". The price and developer are unchanged.
+ *   four to a row, the rest two to a row (one per row on phones; an odd last box stays on the left), so the facts read in a
+ *   natural order, box by box. The price and developer are unchanged.
  *
- * A layer on top of EasyAsia's e-Enquiry page, loaded from the admin Header Scripts box:
+ * A layer on top of the site's e-Enquiry page, loaded from the admin Header Scripts box:
  *   window.NP_PI_LIVE = true   → visitors see it. Leave it out (or false) for the hidden test.
  *   ?np_pi_preview=1           → this browser sees it while hidden (remembered; ?np_pi_preview=0 turns it off).
  *
@@ -65,7 +65,7 @@
     '.npi-v{display:flex;gap:.5em;align-items:flex-start;margin-top:.5rem}',
     '.npi .npi-v .pi-tile-value{margin-top:0}',
     '.npi-v svg{flex:none;width:1.1em;height:1.1em;margin-top:.08em;font-size:1.02rem;fill:none;stroke:#D0021B;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}',
-    // the rest two to a row (an odd last box stays on the left, same size: Bryan 28 Oct)
+    // the rest two to a row (an odd last box stays on the left, same size; 28 Oct)
     '.npi-more{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:24px 0 26px}',
     '.npi-facts+.npi-more{padding-top:12px}',
     '@media (max-width:980px){',
