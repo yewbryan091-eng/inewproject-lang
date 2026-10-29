@@ -36,3 +36,9 @@ show "1 Unit details of 2"; room numbers stay level when a label wraps; a layout
 `np-unit_v1-2.js`: Step 2 ("Your details") in the same style: the steps line with step 2 on, a title, the chosen unit as a
 card with "Change", the site's own form restyled (16 px fields, 14 px+ text); the form, its checks and consent wording stay
 the site's own. Also: a view that only starts with the facing word ("South-Facing Commercial Frontage") is kept whole.
+
+## ui/ — card Save buttons + header Log in / Register (29 Oct 2026)
+`np-ui_v1.css`: every card's Save button shows a bookmark (filled when saved), the word at 14 px on screen, on one middle
+line with the badge beside it (a small script in the box shows the bookmark alone where a card is too narrow, and under
+the badge on the narrowest cards); the header's Log in / Register as a quiet link and a solid red button in sentence case,
+one line on every phone. Loaded from the Header Scripts box via jsDelivr with SRI; if it fails, the site's own styles show.
