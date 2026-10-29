@@ -33,3 +33,6 @@ only sized so it always fits the window. Never shows "RM 0" (also in Step 2 and 
 Loaded from the admin Header Scripts box via jsDelivr with SRI. Off switch: `window.NP_UNIT_LIVE = false`.
 `np-unit_v1-1.js`: the steps line, its numbers and the availability pill at 14 px like all reading text; narrow phones
 show "1 Unit details of 2"; room numbers stay level when a label wraps; a layout written as "null" counts as empty.
+`np-unit_v1-2.js`: Step 2 ("Your details") in the same style: the steps line with step 2 on, a title, the chosen unit as a
+card with "Change", the site's own form restyled (16 px fields, 14 px+ text); the form, its checks and consent wording stay
+the site's own. Also: a view that only starts with the facing word ("South-Facing Commercial Frontage") is kept whole.
