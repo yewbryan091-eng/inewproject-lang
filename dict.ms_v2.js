@@ -4454,6 +4454,9 @@ NP_DICT.ms={
 "Jalan Remia": "Jalan Remia",
 "Persiaran Mahogani Utama": "Persiaran Mahogani Utama",
 "Saved": "Disimpan",
+"<0/> <1>Saved</1>": "<0/> <1>Disimpan</1>",
+"<0/><1>Saved</1>": "<0/><1>Disimpan</1>",
+"<0/><1> <2/> <3>Saved</3> </1>": "<0/><1> <2/> <3>Disimpan</3> </1>",
 "Save this project": "Simpan projek ini",
 "Save this event": "Simpan acara ini"
 };

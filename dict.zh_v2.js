@@ -4454,6 +4454,9 @@ NP_DICT.zh={
 "Jalan Remia": "Jalan Remia",
 "Persiaran Mahogani Utama": "Persiaran Mahogani Utama",
 "Saved": "已收藏",
+"<0/> <1>Saved</1>": "<0/> <1>已收藏</1>",
+"<0/><1>Saved</1>": "<0/><1>已收藏</1>",
+"<0/><1> <2/> <3>Saved</3> </1>": "<0/><1> <2/> <3>已收藏</3> </1>",
 "Save this project": "收藏此项目",
 "Save this event": "收藏此活动"
 };
