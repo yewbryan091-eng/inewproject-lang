@@ -36,6 +36,9 @@ show "1 Unit details of 2"; room numbers stay level when a label wraps; a layout
 `np-unit_v1-2.js`: Step 2 ("Your details") in the same style: the steps line with step 2 on, a title, the chosen unit as a
 card with "Change", the site's own form restyled (16 px fields, 14 px+ text); the form, its checks and consent wording stay
 the site's own. Also: a view that only starts with the facing word ("South-Facing Commercial Frontage") is kept whole.
+`np-unit_v1-3.js`: "Change" on the Step 2 unit card closes the popup (as a click outside it does), so the visitor picks
+another unit from where they were on the page (same block, level and scroll); the name, phone and email they typed come
+back in the next unit's form (held in the page only, never stored). "Unit details" in the steps line still goes back to step 1.
 
 ## ui/ — card Save buttons + header Log in / Register (29 Oct 2026)
 `np-ui_v1.css`: every card's Save button shows a bookmark (filled when saved), the word at 14 px on screen, on one middle
