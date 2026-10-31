@@ -111,7 +111,8 @@
     '.npr-id{font-size:calc(24px*var(--k));font-weight:600;letter-spacing:-.02em;line-height:1.2;color:var(--ink);overflow-wrap:anywhere}',
     '.npr-sub,.npr-line,.npr-view{margin-top:calc(4px*var(--k));font-size:calc(14px*var(--k));color:var(--mute)}',
     '.npr-line{margin-top:calc(12px*var(--k));font-size:calc(15px*var(--k));color:var(--ink)}',
-    '.npr-sub npr-o,.npr-line npr-o{white-space:nowrap}',
+    // each piece ("Tingkat Satu", "Pintu Masuk Kiri", "1,184 sq ft") moves to the next line whole; only a piece wider than the line wraps
+    '.npr-sub npr-o,.npr-sub npr-w,.npr-line npr-o,.npr-line npr-w,.npr-view npr-w,.npr-view npr-o{display:inline-block;max-width:100%}',
     '.npr-sep{margin:0 .45em;color:#AEB3AD}',
     '.npr-price{flex:none;text-align:right}',
     '.npr-amt{font-size:calc(24px*var(--k));font-weight:600;letter-spacing:-.02em;line-height:1.2;color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap}',
