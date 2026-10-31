@@ -40,6 +40,14 @@ the site's own. Also: a view that only starts with the facing word ("South-Facin
 another unit from where they were on the page (same block, level and scroll); the name, phone and email they typed come
 back in the next unit's form (held in the page only, never stored). "Unit details" in the steps line still goes back to step 1.
 
+## receipt/ — e-Enquiry receipt (31 Oct 2026)
+`np-receipt_v1.js`: the receipt shown after an e-Enquiry is submitted, redrawn as one document: "Enquiry received" and the
+time it was submitted, the Reference ID with Copy, the enquiry (project, unit, block + level, price, layout, size, position,
+view) beside the contact details, what happens next, the e-Enquiry incentive, then Save to my account (or View my
+e-Enquiries) / Print / Done with the reward condition word for word. A unit with no price shows "RM -". Print opens the same
+document in the visitor's language. EN / BM / 中文; the site's own receipt stays underneath as the fail-safe.
+Loaded from the admin Header Scripts box via jsDelivr with SRI. Off switch: `window.NP_RECEIPT_LIVE = false`.
+
 ## ui/ — card Save buttons + header Log in / Register (29 Oct 2026)
 `np-ui_v1.css`: every card's Save button shows a bookmark (filled when saved), the word at 14 px on screen, on one middle
 line with the badge beside it (a small script in the box shows the bookmark alone where a card is too narrow, and under
