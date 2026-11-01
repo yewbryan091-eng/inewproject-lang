@@ -53,3 +53,5 @@ Loaded from the admin Header Scripts box via jsDelivr with SRI. Off switch: `win
 line with the badge beside it (a small script in the box shows the bookmark alone where a card is too narrow, and under
 the badge on the narrowest cards); the header's Log in / Register as a quiet link and a solid red button in sentence case,
 one line on every phone. Loaded from the Header Scripts box via jsDelivr with SRI; if it fails, the site's own styles show.
+`np-ui_v2.css` (1 Nov 2026) = v1 unchanged + the e-Enquiry site plan at one size on every project: at most 480 px tall
+and 55% of the screen, centred in its frame, with "View full size" (BM / ZH) under it; a tap still opens the plan full size.
