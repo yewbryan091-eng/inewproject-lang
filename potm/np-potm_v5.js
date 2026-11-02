@@ -168,7 +168,7 @@
     '@media (max-width:767px) and (max-height:700px){',
     '#np-potm button.npp-x{width:36px;height:36px;right:8px;top:6px}#np-potm .npp-ai{bottom:3px}',
     '#np-potm .npp-card{grid-template-rows:68px auto}#np-potm .npp-photo{min-height:68px}#np-potm .npp-mark{transform:translateY(-50%) scale(.8);transform-origin:left center}',
-    '#np-potm .npp-eb{left:76px}',
+    '#np-potm .npp-eb{left:76px;top:9px;transform:none}',   // short phones: level with the seal's top, clear of the caption
     '#np-potm .npp-subl{display:none}#np-potm .npp-hl{font-size:21px}#np-potm .npp-body{padding-top:10px}#np-potm .npp-gold{margin-top:8px}',
     '#np-potm .npp-prods{padding:6px 8px 8px}#np-potm .npp-pi{height:44px}#np-potm .npp-p1 img{width:84px;height:44px}#np-potm .npp-p2 img{width:40px;height:40px}',
     '#np-potm .npp-proj{margin-top:8px;padding:6px 10px}#np-potm a.npp-cta{height:44px;margin-top:8px}#np-potm .npp-fine{margin-top:6px}',
