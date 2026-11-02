@@ -1,0 +1,182 @@
+/* iNewProject core styles v1 (2 Nov 2026): every style that was written out inside the admin Header Scripts box,
+   moved here unchanged and in the same order, so the box keeps one line per file. Loaded from the box, pinned to a
+   commit and checked with SRI. Each part keeps its note from the box. */
+/* iNewProject . the site at 90% on laptops and desktops (added 25 Oct 2026) 
+     At 100% everything looked too large: from 1200 px wide up, every page now shows as it does at 90% browser zoom.
+     Phones and tablets (under 1200 px) are unchanged. Zoom also shrinks vh / vw, so the boxes sized to the screen get
+     their full size back below; the page width follows the screen as at 90%, and on big screens it fills them. */
+@media (min-width: 1200px) {
+	html { zoom: .9; }
+	html .hero { height: calc(100vh / .9 - 76px); }
+	html .member-hero { min-height: calc(90vh / .9); width: calc(100vw / .9); margin-left: calc(50% - 50vw / .9); margin-right: calc(50% - 50vw / .9); }
+	html .member-hero-content { min-height: calc(90vh / .9); }
+	html .member-hero .hero-copy { margin-left: calc(4.8vw / .9); }
+	html .auth-page { min-height: calc(72vh / .9); }
+	html .filter-popup { max-height: calc(85vh / .9); }
+	html .image-modal-inner { height: min(calc(90vh / .9), 860px); }
+	html .ebooking-tnc-modal .ryi-desc { max-height: calc(100vh / .9 - 150px); }
+	html .ofb-modal { max-height: calc(88vh / .9); }
+	html #unitInfoOverlay .unit-detail-modal { max-height: calc(100vh / .9 - 1.5rem); }
+	html .unit-plan-frame { max-height: calc(100vh / .9 - 200px); }
+	html .pl-modal { max-height: calc(90vh / .9); }
+	html .modal-backdrop, html .offcanvas-backdrop { width: calc(100vw / .9); height: calc(100vh / .9); }
+}
+@media (min-width: 1260px) { html .container, html .container-lg, html .container-md, html .container-sm, html .container-xl, html .container-xxl { max-width: 1320px; } }
+@media (min-width: 1440px) { html .container, html .container-lg, html .container-md, html .container-sm, html .container-xl, html .container-xxl { max-width: max(1520px, min(calc(100% - 160px), 2000px)); } }
+/* iNewProject . homepage rewards headline (added 29 Oct 2026): "e-Enquiry incentives." on one line. Laptops: the headline
+     at the site's own size again (50 px; 44 px under 1400 px wide), as before the bigger-text sheet made it 10% bigger and
+     pushed "incentives." to its own line; phones under 360 px wide: 30 px. Every other text keeps its size. */
+@media (min-width: 1200px) { html:not(#np_):not(#np_rw):not([np-x]):not(np-x) .rwh-title { font-size: 44px; line-height: 48px; } }
+@media (min-width: 1400px) { html:not(#np_):not(#np_rw):not([np-x]):not(np-x) .rwh-title { font-size: 50px; line-height: 54px; } }
+@media (max-width: 359.98px) { html:not(#np_):not(#np_rw):not([np-x]):not(np-x) .rwh-title { font-size: 30px; line-height: 34px; } }
+/* iNewProject . homepage first section, the three points (added 30 Oct 2026): the first two reworded to "1,000+ units open"
+     and "Free, no obligation"; the third "Guaranteed reward on eligible SPAs" (30 Oct; "eligible" stays: the Rewards T&C
+     entitles every eligible SPA to one reward, a bare "guaranteed" would contradict it). EN kept short and the tray's inner
+     spacing a little tighter on laptops so the three stay on one row (BM keeps its two rows). The open-unit count comes from the e-Enquiry unit charts: 1,421 open on
+     30 Oct; recount monthly and change or remove this block if it ever gets near 1,000. It sits before the languages block so
+     the words change before the translator reads them (BM / ZH rows in the dictionaries). */
+@media (min-width: 992px) { html.nph-on body .hero-tags { column-gap: 12px; padding-left: 14px; padding-right: 14px; } }   /* laptops: room for the three on one row */
+/* iNewProject . member wording + Similar Projects cards (added 30 Oct 2026). (1) The account type is "Member", not
+     "Member/Investor": the header Log in / Register menus, the login page and pop-up tabs, the register page tab and its two
+     lines ("member privileges"; developers "reach serious property buyers"). Words swapped before the translator reads them
+     (BM "Ahli", ZH from the dictionaries), also in anything the page adds later. Project write-ups that mention investors stay.
+     (2) Similar Projects cards: the site's template puts the Save link inside the card link, so the browser cuts the card link
+     short and the name and details did not open the project; a click anywhere on the card now opens it (Save still saves).
+     Both are also on the developer's list to fix in the template. */
+#similar-projects .similar-card { cursor: pointer; }
+/* iNewProject languages: EN | BM | ZH switcher next to the logo (added 23 Oct 2026) 
+     Translations load only when a visitor picks BM or ZH, from GitHub via jsDelivr (pinned commit, never changes).
+     Off switch: NP_LANG_LIVE = false. Source + runbook: inewproject.os/projects/site-languages/deploy/DEPLOY.md */
+/* header: the language switch next to LOG IN, the menu centred between the logo and it (768 px and up; narrower screens keep the old order) */
+@media (min-width: 768px) { nav.navbar .innercontent > .nav-actions { order: 3; } nav.navbar .innercontent > #np-lang { order: 2; margin-left: auto; margin-right: 22px; } nav.navbar .innercontent > .nav-links { order: 1; margin-left: auto; margin-right: 0; } }
+/* iNewProject . search v2 (homepage 24 Oct 2026, New Launches 25 Oct 2026) 
+     Homepage: Map button in the search bar, the old "All Types" box hidden, and a new panel under the bar.
+     New Launches (/project/): white band with the house drawing, round search bar, "All Property Type" moved into
+     Filter, the same panel. Panel = type tabs, budgets, areas, results with photo + price; full screen on phones.
+     Files: GitHub via jsDelivr, pinned + SRI. Off switches: NP_SEARCH_LIVE (homepage), NP_SEARCH_NL_LIVE (New Launches).
+     Test while off: open the page with ?np_search_preview=1 (?np_search_preview=0 to stop).
+     Source + runbook: inewproject.os/projects/homepage-search/build/DEPLOY.md */
+html.nps-on #typeSelect, html.nps-on .search-bar .sdiv, html.nps-on #searchSugg { display: none !important; }
+.nps-map { display: none; }
+html.nps-on .search-bar .nps-map { display: inline-flex; align-items: center; justify-content: center; gap: 7px; position: relative; flex: none; box-sizing: border-box; height: 46px; margin: 0 8px 0 6px; padding: 0 18px; border: 1.5px solid #111; border-radius: 40px; background: #fff; color: #111; font-family: 'DM Sans', sans-serif; font-size: 0.92rem; font-weight: 700; line-height: 1; text-decoration: none; white-space: nowrap; }
+html.nps-on .search-bar .nps-map:hover { background: #111; color: #fff; }
+.nps-map svg { width: 16px; height: 16px; flex: none; }
+.nps-new { position: absolute; top: -9px; right: -6px; background: #D0021B; color: #fff; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; line-height: 1; padding: 3px 7px; border-radius: 999px; }
+@media (max-width: 649.9px) {
+	html.nps-on .search-bar input { font-size: 16px; width: calc(100% - 50px); }
+	html.nps-on.nps-hasq .search-bar input { width: calc(100% - 90px); }
+	html.nps-on .search-bar .nps-map { height: 44px; margin: 0 8px 0 0; }
+	html.nps-on .search-bar .search-btn { width: auto; flex: 1 1 0; min-height: 44px; }
+}
+/* New Launches: white band, round bar (Search inside it, Filter beside it), type box hidden (it moves into Filter) */
+html.nps-on.nps-nl #pagetitle { background: #fff !important; padding: 0 !important; }
+html.nps-on.nps-nl #pagetitle > .container { position: relative; padding-top: 46px; padding-bottom: 80px; --nps-artw: 460px; }   /* the drawing's width */
+html.nps-on.nps-nl #pagetitle .sec-title { position: relative; z-index: 2; margin-bottom: 20px; }
+html.nps-on.nps-nl #searchForm { position: relative; z-index: 3; max-width: calc(100% - var(--nps-artw) - 48px); }   /* the bar runs up to the drawing */
+html.nps-on.nps-nl #searchForm > .row { position: relative; flex-wrap: nowrap; align-items: center; gap: 12px; margin: 0; }
+html.nps-on.nps-nl #searchForm > .row > div { width: auto; max-width: none; padding: 0; }
+html.nps-on.nps-nl #searchForm .typecol { display: none !important; }
+html.nps-on.nps-nl #searchForm .scol { flex: 1 1 auto; min-width: 0; }
+html.nps-on.nps-nl #searchForm .np-searchpill { height: 72px; gap: 14px; padding: 0 160px 0 28px; border: 1.5px solid #dcdad6; border-radius: 999px; box-shadow: 0 10px 30px rgba(20, 20, 20, .09); }
+html.nps-on.nps-nl #searchForm .np-searchpill-ico { width: 22px; height: 22px; flex: 0 0 22px; color: #6f6f6f; }
+html.nps-on.nps-nl #s { min-width: 0; height: 68px; padding: 0; background: transparent; box-shadow: none; font-family: 'DM Sans', sans-serif; font-size: 18.5px; }
+html.nps-on.nps-nl #searchForm .filtercol { flex: none; }
+html.nps-on.nps-nl #searchfilter { width: 140px; height: 72px; gap: 9px; padding: 0 18px; border: 2px solid #141414; border-radius: 999px; font-size: 17px; }
+html.nps-on.nps-nl #searchForm .submitcol { position: absolute; top: 9px; right: 161px; }
+html.nps-on.nps-nl #searchSubmit { width: auto; min-width: 140px; height: 54px; padding: 0 32px; border-radius: 999px; font-size: 17.5px; }
+@media (max-width: 1259.9px) { html.nps-on.nps-nl #pagetitle > .container { --nps-artw: 400px; } }
+@media (min-width: 1700px) { html.nps-on.nps-nl #pagetitle > .container { --nps-artw: 520px; } }
+@media (max-width: 1199.9px) {
+	html.nps-on.nps-nl #pagetitle > .container { padding-top: 60px; padding-bottom: 26px; }
+	html.nps-on.nps-nl #pagetitle .sec-title { padding-bottom: 24px; margin-bottom: 16px; }
+	html.nps-on.nps-nl #searchForm { max-width: none; }
+	html.nps-on.nps-nl #buttons { padding-top: 30px; }
+}
+@media (max-width: 649.9px) {
+	html.nps-on.nps-nl #pagetitle > .container { padding-top: 22px; padding-bottom: 20px; }
+	html.nps-on.nps-nl #pagetitle .sec-title { padding-bottom: 22px; margin-bottom: 8px; }
+	html.nps-on.nps-nl #pagetitle .sec-title span { display: block; }
+	html.nps-on.nps-nl #searchForm { padding: 6px 8px 8px; border: 1px solid #e4e3e1; border-radius: 22px; background: #fff; box-shadow: 0 6px 22px rgba(20, 20, 20, .07); }
+	html.nps-on.nps-nl #searchForm > .row { flex-wrap: wrap; gap: 8px; }
+	html.nps-on.nps-nl #searchForm .scol { flex: 1 1 100%; }
+	html.nps-on.nps-nl #searchForm .np-searchpill { height: 50px; padding: 0 6px 0 10px; border: 0; border-radius: 0; box-shadow: none; }
+	html.nps-on.nps-nl #s { height: 48px; font-size: 16px; }
+	html.nps-on.nps-nl #searchForm .filtercol { flex: 0 0 calc(40% - 4px); }
+	html.nps-on.nps-nl #searchfilter { width: 100%; height: 46px; justify-content: center; border-width: 1.5px; font-size: 15px; }
+	html.nps-on.nps-nl #searchForm .submitcol { position: static; flex: 1 1 0; }
+	html.nps-on.nps-nl #searchSubmit { width: 100%; min-width: 0; height: 46px; padding: 0 16px; font-size: 16px; }
+	html.nps-on.nps-nl #buttons { padding-top: 20px; padding-bottom: 26px; }
+}
+/* the NEW tag on the New Launches Map tab, as on the homepage's Map button (same end date). Drawn by CSS
+   only, so the tab's own text (Map / Peta / the Chinese word) stays the site's and keeps translating. */
+html.npnl-new #buttons a[href$="/map/"]::after { content: "NEW"; display: inline-block; margin-left: 8px; vertical-align: 2px; background: #D0021B; color: #fff; font-size: 14px; font-weight: 700; letter-spacing: 0.06em; line-height: 1; padding: 3px 8px; border-radius: 999px; }
+html.npnl-new[data-np-lang="ms"] #buttons a[href$="/map/"]::after { content: "BAHARU"; }
+html.npnl-new[data-np-lang="zh"] #buttons a[href$="/map/"]::after { content: "\65B0"; }
+@media (min-width: 1200px) { html.npnl-new #buttons a[href$="/map/"]::after { font-size: 15.556px; } }
+/* phones under 375 px: no room for the tag next to the word (the "Project Listing" tab would wrap), so it sits on the tab's corner */
+@media (max-width: 374.98px) { html.npnl-new #buttons a[href$="/map/"] { position: relative; } html.npnl-new #buttons a[href$="/map/"]::after { position: absolute; top: -13px; right: -5px; margin: 0; padding: 3px 7px; box-shadow: 0 0 0 2px #fff; } }
+/* iNewProject . NEW tag on the New Launches menu item (added 30 Oct 2026), like the Map tab's: in the laptop menu and in the phone
+     menu, with a small red dot on the phone menu button so it's seen before the menu opens. Always on. BM "TERKINI" and
+     Chinese "the newest" (the menu word itself already means new there). CSS only: the menu's own words keep translating. */
+nav.navbar .nav-links a[href$="/project/"]::after, .mobile-drawer .navigation > ul > li > a[href$="/project/"]::after { content: "NEW"; display: inline-block; margin-left: 8px; vertical-align: 2px; background: #D0021B; color: #fff; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; line-height: 1; padding: 3px 7px; border-radius: 999px; }
+html[data-np-lang="ms"] nav.navbar .nav-links a[href$="/project/"]::after, html[data-np-lang="ms"] .mobile-drawer .navigation > ul > li > a[href$="/project/"]::after { content: "TERKINI"; }
+html[data-np-lang="zh"] nav.navbar .nav-links a[href$="/project/"]::after, html[data-np-lang="zh"] .mobile-drawer .navigation > ul > li > a[href$="/project/"]::after { content: "\6700\65B0"; letter-spacing: 0; }
+.mobile-drawer .navigation > ul > li > a[href$="/project/"]::after { margin-left: 10px; vertical-align: 1px; padding: 3px 8px; }
+@media (min-width: 1200px) { nav.navbar .nav-links a[href$="/project/"]::after { font-size: 13.333px; } }   /* 12 px on screen under the 90% zoom */
+#primary-menu-trigger::after { content: ""; position: absolute; top: 13px; right: 11px; width: 9px; height: 9px; border-radius: 50%; background: #D0021B; box-shadow: 0 0 0 2px #fff; pointer-events: none; }
+/* iNewProject . homepage first section v3 (v1 25 Oct 2026; v2 26 Oct: the three points back as a tray, bigger bar, deeper dusk, new drawing;
+     v3 26 Oct night: the headline in DM Serif Display (Fraunces' f looked broken), Search centred in its button) --
+     The New Launches look on the homepage: a dusk sky instead of the photo, the headline in a serif, the round search
+     bar, the site's three points in a tray under it (Free to enquire / Live unit availability / Get rewarded) and the
+     drawing + red line.
+     Off switch: NP_HERO_LIVE = false (the old hero comes back). Test only: /?np_hero_preview=1 (=0 to stop).
+     If the file can't load, the old hero comes back by itself. Runbook: inewproject.os/projects/homepage-hero/build/ */
+html.nph-on .hero { height: auto !important; min-height: 0; display: flex; align-items: center; overflow: visible; background: radial-gradient(ellipse 55% 75% at 76% 68%, rgba(255, 186, 120, .38), rgba(255, 186, 120, 0) 70%), linear-gradient(180deg, #F6CFAF 0%, #F9DCC4 38%, #FCEADB 72%, #FEF4EA 100%); }
+@media (min-width: 1200px) { html.nph-on .hero { min-height: clamp(560px, calc(66vh / .9), 780px); } }
+html.nph-on .hero-bg-photo, html.nph-on .hero-bg-img, html.nph-on .hero-overlay, html.nph-on .hero-scroll { display: none !important; }
+html.nph-on .hero-content { position: relative; width: 100%; max-width: none; margin: 0 auto; padding: 28px 20px 0; text-align: left; align-items: flex-start; }
+@media (min-width: 768px) { html.nph-on .hero-content { max-width: 720px; padding: 40px 12px 8px; } }
+@media (min-width: 992px) { html.nph-on .hero-content { max-width: 960px; } }
+@media (min-width: 1200px) { html.nph-on .hero-content { max-width: 1140px; padding: 36px 12px 104px; } }   /* the bottom: room for the line + the drawing's ground (the script sets it exactly) */
+@media (min-width: 1260px) { html.nph-on .hero-content { max-width: 1320px; } }
+@media (min-width: 1440px) { html.nph-on .hero-content { max-width: max(1520px, min(calc(100% - 160px), 2000px)); } }
+html.nph-on .hero-content > * { position: relative; z-index: 2; }
+html.nph-on .hero-title { order: 1; font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; font-size: 36px; line-height: 1.06; letter-spacing: -1px; color: #141414; text-shadow: none; max-width: 720px; margin: 0 0 20px; animation: none; text-wrap: balance; }
+@media (min-width: 992px) { html.nph-on .hero-title { font-size: 58px; line-height: 1.04; letter-spacing: -1px; margin-bottom: 30px; } }
+html.nph-on .hero-title .red-word { color: #D0021B; }
+html.nph-on .hero-title .hero-no1 { margin-right: 0; font-weight: 400; transition: none; }   /* DM Serif Display has one weight (no fake bold 1); no slide from the site's body * transition */
+/* "No.1" without the space (26 Oct night). The space is in the site's own text (the BM / ZH dictionaries are keyed on it),
+   so the 1 steps back over it: DM Serif's space is .218em, plus the headline's letter-spacing. ZH has no space there. */
+@media (min-width: 300px) { html.nph-on:not([data-np-lang="zh"]) .hero-title .hero-no1 { margin-left: calc(1px - .218em); } }   /* not on <300 px screens: there the 1 can start a line */
+@media (min-width: 992px) { html.nph-on:not([data-np-lang="zh"]) .hero-title .hero-no1 { margin-left: calc(1px - .218em); } }
+/* headline letter-spacing -1px at every size: "for New Developments." fits one row on 390-411 px phones at 36 px */
+@media (min-width: 300px) { html.nph-on[data-np-lang="zh"] .hero .hero-title { word-break: keep-all; } }   /* Chinese: no line break inside a word */
+html.nph-on #searchWrap { order: 2; z-index: 5; width: 100%; max-width: 760px; margin: 0; animation: none; }
+@media (min-width: 650px) {
+	html.nph-on #searchWrap .search-bar { height: 86px; border: 1.5px solid #ecdccb; border-radius: 999px; box-shadow: 0 14px 36px rgba(60, 30, 10, .12); background: #fff; padding: 0 11px 0 30px; }
+	html.nph-on #searchWrap .search-bar input { font-size: 20.5px; }
+	html.nph-on #searchWrap .search-bar .search-icon svg { width: 24px; height: 24px; }
+	html.nph-on #searchWrap .search-bar .nps-map { height: 56px; padding: 0 22px; font-size: 17.5px; }
+	html.nph-on #searchWrap .search-btn { height: 64px; min-width: 170px; border-radius: 999px; font-size: 19.5px; }
+}
+html.nph-on #searchWrap .search-btn { justify-content: center; }   /* the word in the middle of the button (26 Oct night) */
+@media (max-width: 649.9px) { html.nph-on #searchWrap .search-bar { border: 1px solid #ecdccb; box-shadow: 0 6px 22px rgba(20, 20, 20, .07); } }
+/* the site's three points, pick F (26 Oct): a tray tucked under the search bar, a red tick each (BM / ZH as today).
+   The site sets margin-top on .hero-tags inline, hence !important on the margin. EN and ZH fit one row; BM is ~55 px too
+   long for it at the same type size, so in BM the points sit left-aligned on two rows. Phones and tablets: one per line. */
+html.nph-on .hero-tags { order: 3; z-index: 1; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px 16px; width: calc(100% - 36px); max-width: 724px; margin: -18px 0 0 18px !important; padding: 30px 20px 14px; background: rgba(255, 255, 255, .62); border: 1px solid rgba(240, 220, 200, .9); border-top: 0; border-radius: 0 0 24px 24px; box-shadow: 0 12px 26px rgba(60, 30, 10, .07); animation: none; }
+html.nph-on[data-np-lang="ms"] .hero-tags { justify-content: flex-start; column-gap: 28px; }
+@media (max-width: 991.98px) { html.nph-on .hero-tags { flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 10px; width: calc(100% - 24px); margin: -14px 0 0 12px !important; padding: 26px 18px 14px; } }
+html.nph-on .hero-tag { flex: none; flex-direction: row-reverse; justify-content: flex-end; align-items: center; gap: 8px; padding: 0; background: none; backdrop-filter: none; border: 0; border-radius: 0; box-shadow: none; color: #2a2a2a; font: 600 15px/1.2 'DM Sans', sans-serif; white-space: nowrap; }
+@media (max-width: 991.98px) { html.nph-on .hero-tag { white-space: normal; } }
+html.nph-on .hero-tag-check { width: 20px; height: 20px; background: #D0021B; color: #fff; font-size: 11px; border: 0; box-shadow: none; }
+html.nph-on .nph-art { position: relative; order: 4; z-index: 1; width: 100%; max-width: 640px; margin-top: 10px; pointer-events: none; }
+@media (min-width: 1200px) { html.nph-on .nph-art { position: absolute; max-width: none; margin: 0; } }
+html.nph-on .nph-art img { display: block; width: 100%; height: auto; }
+html.nph-on .nph-art svg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible; }
+html.nph-on .nph-art svg { -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 16%); mask-image: linear-gradient(90deg, transparent 0, #000 16%); -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-size: 100% 100%; mask-size: 100% 100%; }   /* the line only inside the drawing: it fades in at the drawing's left edge and walks up the path (27 Oct) */
+@keyframes nphDraw { from { -webkit-mask-size: 0% 100%; mask-size: 0% 100%; } to { -webkit-mask-size: 100% 100%; mask-size: 100% 100%; } }
+html.nph-on .nph-art svg { animation: nphDraw 1.6s cubic-bezier(.4, 0, .2, 1) .6s both; }   /* it draws itself once as the page opens */
+@media (prefers-reduced-motion: reduce) { html.nph-on .nph-art svg { animation: none; } }
+/* iNewProject homepage headline: "New Developments." in a slightly brighter brand red #E8021E (added 26 Oct 2026) */
+.hero--cinematic .hero-title .red-word{color:#E8021E}
