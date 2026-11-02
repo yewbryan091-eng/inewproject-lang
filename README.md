@@ -55,3 +55,7 @@ the badge on the narrowest cards); the header's Log in / Register as a quiet lin
 one line on every phone. Loaded from the Header Scripts box via jsDelivr with SRI; if it fails, the site's own styles show.
 `np-ui_v2.css` (1 Nov 2026) = v1 unchanged + the e-Enquiry site plan at one size on every project: at most 480 px tall
 and 55% of the screen, centred in its frame, with "View full size" (BM / ZH) under it; a tap still opens the plan full size.
+`np-ui_v3.css` (2 Nov 2026) = v2 unchanged + every reward in one champagne gold: the homepage reward banners (and their
+town drawing) take the gold the listing and e-Enquiry incentives already use, the incentives' Terms & conditions links go
+from blue to gold text, and the e-Enquiry promotion band from pink to warm white. Colours only, but for the e-Enquiry T&C
+link's 6 px left margin (a wrapped link now starts flush with its text; one that now fits stays on the line).
