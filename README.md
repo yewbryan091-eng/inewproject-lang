@@ -59,3 +59,8 @@ and 55% of the screen, centred in its frame, with "View full size" (BM / ZH) und
 town drawing) take the gold the listing and e-Enquiry incentives already use, the incentives' Terms & conditions links go
 from blue to gold text, and the e-Enquiry promotion band from pink to warm white. Colours only, but for the e-Enquiry T&C
 link's 6 px left margin (a wrapped link now starts flush with its text; one that now fits stays on the line).
+
+## seo/ — site name for Google (3 Nov 2026)
+`np-seo_v1.js`: the template still calls the site "New Project 1U" (og:site_name, logo alt). This sets both to
+"iNewProject" on every page and adds WebSite structured data (name "iNewProject") on the homepage. Nothing visible changes.
+Loaded with defer from the Header Scripts box, pinned to a commit with SRI.
