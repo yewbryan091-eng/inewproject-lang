@@ -5,6 +5,7 @@
  *     The page keeps its order: project information first.
  *   - The promotion band still goes to the sales representative's form; it says so and types the question in.
  *   - Layout and budget filter right above the level list. Floor by floor stays; a tapped level shows its level plan first.
+ *     All and Any price are lit from the start, as the defaults.
  *     No dead ends: a tower only offers what it has open; a choice that can't combine replaces the other and says why; a layout
  *     missing in this tower points to the tower that has it. Where there is nothing to narrow, the filter stays away.
  *   - Phones: while choosing units the site header and section tabs step away and the tower chooser is one slim line.
@@ -250,9 +251,9 @@
       var layoutRow = '';
       if (names.length >= 2) layoutRow = names.length > 8
         ? '<select class="npc-sel" aria-label="' + esc(t('fLayout')) + '"><option value="">' + esc(t('fAll')) + ' (' + allN + ')</option>' + names.map(function (n) { return '<option value="' + esc(n) + '"' + (N.layout === n ? ' selected' : '') + '>' + esc(label(n)) + ' (' + count(n) + ')</option>'; }).join('') + '</select>'
-        : '<div class="npc-chips">' + [''].concat(names).map(function (n) { var c = n ? count(n) : allN, on = !!n && N.layout === n; return '<button type="button" class="npc-chip' + (on ? ' on' : '') + (c ? '' : ' dim') + '" aria-pressed="' + on + '" data-l="' + esc(n) + '">' + esc(n ? label(n) : t('fAll')) + ' <span class="c">(' + c + ')</span></button>'; }).join('') + '</div>';
+        : '<div class="npc-chips">' + [''].concat(names).map(function (n) { var c = n ? count(n) : allN, on = n ? N.layout === n : N.layout === null; return '<button type="button" class="npc-chip' + (on ? ' on' : '') + (c ? '' : ' dim') + '" aria-pressed="' + on + '" data-l="' + esc(n) + '">' + esc(n ? label(n) : t('fAll')) + ' <span class="c">(' + c + ')</span></button>'; }).join('') + '</div>';
       function budgetFit(v) { return open.some(function (u) { return (N.layout === null || short(u.type) === N.layout) && priced(u) && +u.price <= v; }); }
-      var budgetRow = steps.length ? '<div class="npc-chips">' + [0].concat(steps).map(function (v) { var on = !!v && N.budget === v; return '<button type="button" class="npc-chip' + (on ? ' on' : '') + (!v || budgetFit(v) ? '' : ' dim') + '" aria-pressed="' + on + '" data-b="' + v + '">' + esc(v ? t('fUpto', { p: rmk(v) }) : t('fAny')) + '</button>'; }).join('') + '</div>' : '';
+      var budgetRow = steps.length ? '<div class="npc-chips">' + [0].concat(steps).map(function (v) { var on = v ? N.budget === v : !N.budget; return '<button type="button" class="npc-chip' + (on ? ' on' : '') + (!v || budgetFit(v) ? '' : ' dim') + '" aria-pressed="' + on + '" data-b="' + v + '">' + esc(v ? t('fUpto', { p: rmk(v) }) : t('fAny')) + '</button>'; }).join('') + '</div>' : '';
       var hit = open.filter(fits), on = active();
       var lv = Object.keys(BD[ofbCurrentBlock] || {}).filter(function (l) { return floorAvailableCount(l) > 0; });
       var plain = lv.every(function (l) { var d = BD[ofbCurrentBlock][l].displayName; return !d || /^level\b/i.test(d); });
