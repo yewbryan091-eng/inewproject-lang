@@ -1,23 +1,17 @@
-/* iNewProject . New Launches (6 Nov 2026).
-   1. The "N Project(s) Found For Sale" line in DM Sans Bold: 24 px on screen on laptops (site zoom .9), 20 px below 1200 px, its own full row on phones.
-   2. The NEW pill on the state rows, beside the desktop list and in the phone panel. np-found_v1.js decides which states show it, by date.
-      Drawn by CSS only, so the state names stay the site's and keep translating. Same words as the Map tab: NEW / BAHARU / the Chinese word. */
-html:not(#np_):not([np-x]):not(np-x) #projectListing .sec-box > .d-flex > .sec-title { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 26.667px; line-height: 1.25; letter-spacing: -.01em; }
-@media (max-width: 1199.98px) { html:not(#np_):not([np-x]):not(np-x) #projectListing .sec-box > .d-flex > .sec-title { font-size: 20px; } }
-@media (max-width: 575.98px) { html:not(#np_):not([np-x]):not(np-x) #projectListing .sec-box > .d-flex > .sec-title { flex: 0 0 100%; margin-bottom: 8px; } }
+/* iNewProject . New Launches (6 Nov 2026), loaded from the admin Header Scripts box.
+   1. The count line above the listings ("50 Project(s) Found For Sale"): the site's heading font at its heaviest cut was as
+      loud as the page title. Here it is in the cards' font: 24 px on screen on laptops (.9 zoom), 20 px below that, on its
+      own row on phones. The words and the red number stay the site's.
+   2. The NEW tag on state rows: np-found_v1.js decides which rows get .npf-new. Drawn by CSS, so the site's own words keep
+      translating. Same red as the other NEW tags; BM and Chinese words as on the Map tab. Where it doesn't fit next to the
+      name it drops under it, with no indent. On the phone panel's red (selected) row it turns white. */
+html:not(#np_):not([np-x]):not(np-x):not(.npf-off) #projectListing .sec-box > .d-flex > .sec-title { font-family: 'DM Sans', sans-serif; font-weight: 700; letter-spacing: -.01em; line-height: 1.25; font-size: 26.667px; }
+@media (max-width: 1199.98px) { html:not(#np_):not([np-x]):not(np-x):not(.npf-off) #projectListing .sec-box > .d-flex > .sec-title { font-size: 20px; } }
+@media (max-width: 575.98px) { html:not(#np_):not([np-x]):not(np-x):not(.npf-off) #projectListing .sec-box > .d-flex > .sec-title { flex: 0 0 100%; margin-bottom: 8px; } }
 
-html.npf-kl .accordion-item:has(> button > img.marker[alt="Kuala Lumpur"]) > button .label,
-html.npf-sel .accordion-item:has(> button > img.marker[alt="Selangor"]) > button .label { display: flex; flex-wrap: wrap; align-items: center; gap: 3px 8px; }
-html.npf-kl .accordion-item:has(> button > img.marker[alt="Kuala Lumpur"]) > button .label::after,
-html.npf-sel .accordion-item:has(> button > img.marker[alt="Selangor"]) > button .label::after { content: "NEW"; flex: none; padding: 3px 8px; border-radius: 999px; background: #D0021B; color: #fff; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .06em; line-height: 1; white-space: nowrap; }
-html[data-np-lang="ms"].npf-kl .accordion-item:has(> button > img.marker[alt="Kuala Lumpur"]) > button .label::after,
-html[data-np-lang="ms"].npf-sel .accordion-item:has(> button > img.marker[alt="Selangor"]) > button .label::after { content: "BAHARU"; }
-html[data-np-lang="zh"].npf-kl .accordion-item:has(> button > img.marker[alt="Kuala Lumpur"]) > button .label::after,
-html[data-np-lang="zh"].npf-sel .accordion-item:has(> button > img.marker[alt="Selangor"]) > button .label::after { content: "\65B0"; }
-@media (min-width: 1200px) {
-	html.npf-kl .accordion-item:has(> button > img.marker[alt="Kuala Lumpur"]) > button .label::after,
-	html.npf-sel .accordion-item:has(> button > img.marker[alt="Selangor"]) > button .label::after { font-size: 13.333px; }
-}
-/* a selected state in the phone panel is a red row: the pill turns white so it can still be seen */
-html.npf-kl .mobile-filter .accordion-item:has(> button > img.marker[alt="Kuala Lumpur"]) > button.active .label::after,
-html.npf-sel .mobile-filter .accordion-item:has(> button > img.marker[alt="Selangor"]) > button.active .label::after { background: #fff; color: #D0021B; }
+.npf-new { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 3px 8px; }
+.npf-new::after { content: "NEW"; flex: none; background: #D0021B; color: #fff; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .06em; line-height: 1; padding: 3px 8px; border-radius: 999px; white-space: nowrap; }
+@media (min-width: 1200px) { .npf-new::after { font-size: 13.333px; } }
+html[data-np-lang="ms"] .npf-new::after { content: "BAHARU"; }
+html[data-np-lang="zh"] .npf-new::after { content: "\65B0"; letter-spacing: 0; }
+.mobile-filter .header-accordion-trigger.active .npf-new::after { background: #fff; color: #D0021B; }
