@@ -15,3 +15,8 @@ html:not(#np_):not([np-x]):not(np-x):not(.npf-off) #projectListing .sec-box > .d
 html[data-np-lang="ms"] .npf-new::after { content: "BAHARU"; }
 html[data-np-lang="zh"] .npf-new::after { content: "\65B0"; letter-spacing: 0; }
 .mobile-filter .header-accordion-trigger.active .npf-new::after { background: #fff; color: #D0021B; }
+/* The side list is at its narrowest from 992 px to about 1220 px. The longer BM word would squeeze the row's arrow there, so it sits under the name, out of the row's way, and the row grows to hold it. */
+@media (min-width: 992px) and (max-width: 1219.98px) {
+	html[data-np-lang="ms"] #projectListing .accordion-trigger.npf-row { position: relative; padding-bottom: 30px; }
+	html[data-np-lang="ms"] #projectListing .npf-row .npf-new::after { position: absolute; left: 46px; bottom: 9px; }
+}

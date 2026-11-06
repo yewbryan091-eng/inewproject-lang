@@ -20,6 +20,7 @@
       if (!(now < Date.parse(NEW_UNTIL[state] + 'T00:00:00+08:00'))) continue;
       var count = rows[i].querySelector('.count'), label = rows[i].querySelector('.label');
       if (!label || !count || !(parseInt(count.textContent, 10) > 0)) continue;
+      rows[i].classList.add('npf-row');
       (label.querySelector('a') || label).classList.add('npf-new');
     }
   }
