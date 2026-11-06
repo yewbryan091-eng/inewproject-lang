@@ -1,0 +1,23 @@
+/* iNewProject . New Launches (6 Nov 2026).
+   1. The "N Project(s) Found For Sale" line in DM Sans Bold: 24 px on screen on laptops (site zoom .9), 20 px below 1200 px, its own full row on phones.
+   2. The NEW pill on the state rows, beside the desktop list and in the phone panel. np-found_v1.js decides which states show it, by date.
+      Drawn by CSS only, so the state names stay the site's and keep translating. Same words as the Map tab: NEW / BAHARU / the Chinese word. */
+html:not(#np_):not([np-x]):not(np-x) #projectListing .sec-box > .d-flex > .sec-title { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 26.667px; line-height: 1.25; letter-spacing: -.01em; }
+@media (max-width: 1199.98px) { html:not(#np_):not([np-x]):not(np-x) #projectListing .sec-box > .d-flex > .sec-title { font-size: 20px; } }
+@media (max-width: 575.98px) { html:not(#np_):not([np-x]):not(np-x) #projectListing .sec-box > .d-flex > .sec-title { flex: 0 0 100%; margin-bottom: 8px; } }
+
+html.npf-kl .accordion-item:has(> button > img.marker[alt="Kuala Lumpur"]) > button .label,
+html.npf-sel .accordion-item:has(> button > img.marker[alt="Selangor"]) > button .label { display: flex; flex-wrap: wrap; align-items: center; gap: 3px 8px; }
+html.npf-kl .accordion-item:has(> button > img.marker[alt="Kuala Lumpur"]) > button .label::after,
+html.npf-sel .accordion-item:has(> button > img.marker[alt="Selangor"]) > button .label::after { content: "NEW"; flex: none; padding: 3px 8px; border-radius: 999px; background: #D0021B; color: #fff; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .06em; line-height: 1; white-space: nowrap; }
+html[data-np-lang="ms"].npf-kl .accordion-item:has(> button > img.marker[alt="Kuala Lumpur"]) > button .label::after,
+html[data-np-lang="ms"].npf-sel .accordion-item:has(> button > img.marker[alt="Selangor"]) > button .label::after { content: "BAHARU"; }
+html[data-np-lang="zh"].npf-kl .accordion-item:has(> button > img.marker[alt="Kuala Lumpur"]) > button .label::after,
+html[data-np-lang="zh"].npf-sel .accordion-item:has(> button > img.marker[alt="Selangor"]) > button .label::after { content: "\65B0"; }
+@media (min-width: 1200px) {
+	html.npf-kl .accordion-item:has(> button > img.marker[alt="Kuala Lumpur"]) > button .label::after,
+	html.npf-sel .accordion-item:has(> button > img.marker[alt="Selangor"]) > button .label::after { font-size: 13.333px; }
+}
+/* a selected state in the phone panel is a red row: the pill turns white so it can still be seen */
+html.npf-kl .mobile-filter .accordion-item:has(> button > img.marker[alt="Kuala Lumpur"]) > button.active .label::after,
+html.npf-sel .mobile-filter .accordion-item:has(> button > img.marker[alt="Selangor"]) > button.active .label::after { background: #fff; color: #D0021B; }
