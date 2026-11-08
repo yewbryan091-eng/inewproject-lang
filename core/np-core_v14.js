@@ -1,4 +1,4 @@
-/* iNewProject core scripts v14 (8 Nov 2026) = v13 with the dictionary pin moved (About, Developer Summary and Master Plan text for 7 listings), nothing else. v13 (8 Nov 2026) = v12 with the dictionary pin moved (phase names with blocks), nothing else. v7 (6 Nov 2026) = v6 with the dictionary pin moved, nothing else. v6 (6 Nov 2026, never in a box) = v5 with the dictionary pin moved. v5 (6 Nov 2026) = v4 with the dictionary pin moved. v4 was: v3 with the search and hero pins moved to drawing v14; v3 (2 Nov 2026) = v2 with the homepage reward steps' e-Enquire icon as a tick in a circle
+/* iNewProject core scripts v14 (8 Nov 2026) = v13 with the dictionary pin moved (About, Developer Summary and Master Plan text for 7 listings) and one block added at the end (the site's pop-ups always fit the screen; empty listing facts hidden). v13 (8 Nov 2026) = v12 with the dictionary pin moved (phase names with blocks), nothing else. v7 (6 Nov 2026) = v6 with the dictionary pin moved, nothing else. v6 (6 Nov 2026, never in a box) = v5 with the dictionary pin moved. v5 (6 Nov 2026) = v4 with the dictionary pin moved. v4 was: v3 with the search and hero pins moved to drawing v14; v3 (2 Nov 2026) = v2 with the homepage reward steps' e-Enquire icon as a tick in a circle
    (Tabler Icons "circle-check", filled, MIT licence, (c) Pawel Kuna). v2 = v1 without the GA4 lead events, which went
    back into the admin Header Scripts box next to Google's own tags. v1: every script that was written out inside the
    box, moved here unchanged and in the same order. Loaded from the box, pinned to a commit and checked with SRI, without
@@ -317,4 +317,30 @@ window.NP_PI_LIVE = true;
 /* iNewProject e-Enquiry unit popup: new left side + floor plan always inside the window (added 28 Oct 2026) */
 try {
 window.NP_UNIT_LIVE = true;
+} catch (e) { setTimeout(function () { throw e; }); }
+/* iNewProject . the site's own pop-ups always fit the screen + empty listing facts hidden (added 8 Nov 2026).
+     (1) Video / Sign-up / Share pop-ups (.modal-overlay), the e-Enquiry "Send an Email" / enquiry forms (.enquiry-modal)
+     and the listing page's e-Enquiry Terms & Conditions were centred with no height limit: on a short screen (a laptop at
+     1366x768, Windows at 125-150 %, a phone turned sideways) their top and close button sat above the screen, and the
+     listing T&C (11,000 px tall) opened in the middle of clause 18 with no way to scroll or close. Now they stay centred
+     when they fit, and scroll from their top when they don't; the listing T&C text scrolls inside the box like the one on
+     the e-Enquiry page (90 % laptop zoom allowed for). (2) A listing's "Total Development Area" box is hidden while it is
+     empty. (3) On project cards, a Built-up line that is only "sqft" (no number in the backend) is hidden. */
+try {
+(function () {
+	var css = '.modal-overlay.open,.enquiry-modal.open,#ebooking-tnc-modal{overflow-y:auto;-webkit-overflow-scrolling:touch;align-items:flex-start}' +
+		'.modal-overlay.open>.modal-box,.enquiry-modal.open>.enquiry-modal-box,#ebooking-tnc-modal>div{margin-top:auto;margin-bottom:auto}' +
+		'#ebooking-tnc-modal .ryi-desc{max-height:calc(100vh - 150px);max-height:calc(100dvh - 150px);overflow:auto}' +
+		'@media (min-width:1200px){html #ebooking-tnc-modal .ryi-desc{max-height:calc(100vh / .9 - 150px)}}' +
+		'.fact-card:has(>.fact-value>strong:only-child:empty){display:none}' +
+		'.project-meta>span.np-nofact{display:none!important}';
+	var st = document.createElement('style'); st.id = 'np-fit-css'; st.textContent = css; (document.head || document.documentElement).appendChild(st);
+	function meta() {
+		var s = document.querySelectorAll('.project-meta>span'), i, d, t;
+		for (i = 0; i < s.length; i++) { d = s[i].querySelector('.metadesc'); if (!d) continue; t = d.textContent.trim();
+			s[i].classList.toggle('np-nofact', !t || (/^(sq\s?ft|kaki persegi|\u5e73\u65b9\u5c3a)$/i.test(t))); }
+	}
+	if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', meta); else meta();
+	addEventListener('load', meta); addEventListener('np:cards', meta);
+})();
 } catch (e) { setTimeout(function () { throw e; }); }
