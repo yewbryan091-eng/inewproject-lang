@@ -5291,6 +5291,8 @@ NP_DICT.zh={
 "Above the podium, Tower 1 is planned with 603 serviced apartments and a 57,000 sq ft facilities podium, and Limkokwing University is next to the site. Shaftsbury Square and DPULZE Shopping Centre are within about 5 km, and the MEX and ELITE highways connect Cyberjaya with Kuala Lumpur, Putrajaya and the airport.": "裙楼上方规划了 1 号楼，共 603 个服务式公寓单位及一座 57,000 平方尺的设施裙楼，Limkokwing 大学就在地段旁。Shaftsbury Square 和 DPULZE 购物中心都在约 5 公里内，MEX 和 ELITE 大道则把赛城连接到吉隆坡、布城和机场。",
 "The property gallery opened in November 2026 and the first tower is expected to launch in January 2027. Prices for the shops have not been released yet.": "产业展示厅已于 2026 年 11 月开放，首座大楼预计于 2027 年 1 月推出。店铺价格尚未公布。",
 "Tropicana Avan sits on a 7.18-acre freehold site along Persiaran APEC in Cyberjaya, next to Cyberjaya City Centre MRT station on the Putrajaya Line, with a covered link bridge of about 100 m planned to the station.<0/> <1/> The three-storey retail podium holds 65 shops of 1,000 or 1,500 sq ft beneath Tower 1, a 38-storey block of 603 serviced apartments with its own 57,000 sq ft facilities podium. Later phases have not been announced yet.": "Tropicana Avan 坐落于赛城 Persiaran APEC 旁一块 7.18 英亩的永久地契地段，紧邻布城线的 Cyberjaya City Centre 捷运站，并规划约 100 米的有盖天桥通往车站。<0/> <1/> 这座三层零售裙楼设有 65 间 1,000 或 1,500 平方尺的店铺，位于 1 号楼下方；1 号楼为 38 层高大楼，共 603 个服务式公寓单位，并有自己 57,000 平方尺的设施裙楼。后续各期尚未公布。",
+"Cyberjaya, Selangor": "赛城, 雪兰莪",
+"<0>Cyberjaya, Selangor</0> · Retail Shops": "<0>赛城, 雪兰莪</0> · 零售店铺",
 "<0>Setia Mayuri, Semenyih, Selangor</0> · Double-storey semi-detached homes": "<0>Setia Mayuri, 士毛月, 雪兰莪</0> · 双层半独立式住宅",
 "Double-storey semi-detached homes": "双层半独立式住宅",
 "Setia Mayuri, Semenyih, Selangor": "Setia Mayuri, 士毛月, 雪兰莪",
