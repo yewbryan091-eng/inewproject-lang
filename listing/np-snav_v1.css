@@ -1,0 +1,22 @@
+/* iNewProject . listing page top, simpler (19 Nov 2026). Loaded from the admin Header Scripts box. CSS only.
+   Why: a buyer's review said the listing top had "too many things to click on" (13 tabs that ran off the screen). Bryan picked
+   option B + style 3 from the demo.
+   1. The section tab bar keeps 5 shortcuts: Project Details, Floor Plan, Facilities, Location, e-Enquiry (4 when a listing has no
+      Facilities). Every section stays on the page; only its tab is hidden. The tabs keep the site's own EN / BM / 中文 labels.
+   2. e-Enquiry is a soft pink pill (the action, without a big red block); on phones it comes first, so nobody swipes to find it.
+   3. Less empty space between the tab bar and the project name.
+   4. Phones from 375 px: e-Enquiry, Save and Share stay on one row in BM too ("Kongsi" used to drop to its own line).
+   The e-Enquiry pages' own tab bar (project-info, sales-package, booking ...) is untouched: none of its tabs match these rules. */
+
+.section-nav .snav-link:is([onclick*="'overview'"], [onclick*="'selling-points'"], [onclick*="'about-"], [onclick*="'masterplan'"], [onclick*="'amenities'"], [onclick*="'developer'"], [onclick*="'mortgage'"], [onclick*="'similar-projects'"]) { display: none !important; }
+
+.section-nav .snav-link[onclick*="'e-enquiry'"] { margin: 0 6px; padding: .45rem 1rem; border: 0; border-radius: 999px; background: #FCEBED; color: #C0001A !important; font-family: 'Inter', sans-serif; font-style: normal; }
+.section-nav .snav-link[onclick*="'e-enquiry'"]:hover, .section-nav .snav-link[onclick*="'e-enquiry'"].active { background: #F8D9DD; border-bottom-color: transparent; }
+@media (max-width: 767.98px) { .section-nav .snav-link[onclick*="'e-enquiry'"] { order: -1; } }
+
+body:has(.section-nav) #overview.section { padding-top: 28px; }
+
+@media (min-width: 375px) and (max-width: 575.98px) {
+  .hero-action-btns { gap: 6px; }
+  .hero-action-btns .hero-btn { padding-left: 13px; padding-right: 13px; }
+}
