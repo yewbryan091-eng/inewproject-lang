@@ -1,7 +1,7 @@
 // iNewProject . daily open-unit counts for the New Launches cards (20 Nov 2026). Run by .github/workflows/eenquiry-counts.yml.
 // Reads the map page's project list once, then each e-Enquiry project's page once (about 25 pages a day), and counts open
 // units the same way the listing tag does (conv: every {"unitNo"...} object, status "green"). Writes eenquiry-counts.json:
-// {"t": "<ISO time>", "counts": {"<slug>": n}, "detail": {"<slug>": {"total": N, "low": {b, l, no, type, price}, "layouts": {"Type A": n}}}}
+// {"t": "<ISO time>", "counts": {"<slug>": n}, "detail": {"<slug>": {"total": N, "low": {b, l, no, type, price}, "layouts": {"Type A": n}, "prices": {"Type A": lowest open price}}}}
 // (21 Nov: detail added for the listing's e-Enquiry box; layout names = conv's short() so '#units&layout=' links match). Safety: if the list cannot be read, or fewer than half the e-Enquiry projects
 // can be counted, it exits with an error and the previous file stays as it is.
 import { writeFileSync } from 'node:fs';
@@ -21,13 +21,13 @@ const tidy = x => String(x || '').replace(/\s+/g, ' ').trim();
 function short(x) { let n = tidy(x).split(/\s+[·\/]\s+/)[0]; if (/^Type\b/i.test(n)) n = n.split(/\s+[—–]\s+/)[0]; n = n.trim(); return n ? n.charAt(0).toUpperCase() + n.slice(1) : n; }   // = conv's
 for (const slug of ee) {
   const h = await get('/project/' + slug + '/e-enquiry/'); await sleep(1500);
-  if (!h) continue; let n = 0, tot = 0, low = null; const lay = {};
+  if (!h) continue; let n = 0, tot = 0, low = null; const lay = {}, pri = {};
   for (const m of h.matchAll(/\{"unitNo"[^{}]*\}/g)) { let u; try { u = JSON.parse(m[0]); } catch (e) { continue; } tot++; if (u.status !== 'green') continue; n++;
     const t = short(u.type); if (t && t.length <= 40) lay[t] = (lay[t] || 0) + 1;
-    const pr = +u.price || 0;
+    const pr = +u.price || 0; if (t && t.length <= 40 && pr > 0 && (!pri[t] || pr < pri[t])) pri[t] = pr;
     if (pr > 0 && (!low || pr < low.price) && u.unitNo != null && u.unitBlock != null && u.unitLevel != null)
       low = { b: String(u.unitBlock).slice(0, 60), l: String(u.unitLevel).slice(0, 40), no: String(u.unitNo).slice(0, 40), type: t.slice(0, 40), price: pr }; }
-  if (tot && Number.isInteger(n) && n >= 0 && n <= 5000) { counts[slug] = n; detail[slug] = { total: tot, low, layouts: lay }; }
+  if (tot && Number.isInteger(n) && n >= 0 && n <= 5000) { counts[slug] = n; detail[slug] = { total: tot, low, layouts: lay, prices: pri }; }
 }
 const got = Object.keys(counts).length;
 console.log(`e-Enquiry projects ${ee.length}, counted ${got}`, JSON.stringify(counts));
