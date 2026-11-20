@@ -1,5 +1,8 @@
 # inewproject-lang
 
+Copyright (c) 2026 iNewProject. All rights reserved. Published only so the site can load these files; no licence to
+copy or reuse them is granted. See [LICENSE](LICENSE).
+
 Translation files for the EN | BM | 中文 language switcher on [inewproject.com](https://www.inewproject.com).
 They hold the site's public page text in Bahasa Malaysia and Chinese, and nothing else.
 `map/` holds the front-end files of the /map/ page (page_map_vN.js / .css), served the same way.
