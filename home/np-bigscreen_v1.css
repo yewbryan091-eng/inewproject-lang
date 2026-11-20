@@ -1,0 +1,27 @@
+/* iNewProject . homepage first section on big screens, v1 (20 Nov 2026). Loaded from the admin Header Scripts box. CSS only.
+   On a big monitor the first section looked small and left a band of the next section under it. From 1800 px wide the
+   section is scaled up in three steps (x1.12 from 1800, x1.28 from 2200, x1.4 from 2800) and fills the screen; its content keeps
+   the logo's left edge. The rewards section below gets the same width. Laptops (< 1800 px), iPads and phones: unchanged.
+   The small "e-Enquiry rewards" hint at the bottom of the section (home/np-rewardhint_v1.js) shows only when the rewards section
+   cannot be seen. */
+@media (min-width: 1800px) {
+  html.nph-on .hero { zoom: 1.12; margin-top: calc(76px / 1.12) !important; min-height: calc((100vh / .9 - 76px) / 1.12) !important; }
+  html.nph-on .hero-content { max-width: max(calc(1520px / 1.12), min(calc(100% - 142.86px), calc(2000px / 1.12))) !important; }
+}
+@media (min-width: 2200px) {
+  html.nph-on .hero { zoom: 1.28; margin-top: calc(76px / 1.28) !important; min-height: calc((100vh / .9 - 76px) / 1.28) !important; }
+  html.nph-on .hero-content { max-width: max(calc(1520px / 1.28), min(calc(100% - 125.00px), calc(2000px / 1.28))) !important; }
+}
+@media (min-width: 2800px) {
+  html.nph-on .hero { zoom: 1.4; margin-top: calc(76px / 1.4) !important; min-height: calc((100vh / .9 - 76px) / 1.4) !important; }
+  html.nph-on .hero-content { max-width: max(calc(1520px / 1.4), min(calc(100% - 114.29px), calc(2000px / 1.4))) !important; }
+}
+@media (min-width: 1800px) { html .rwh-wrap { max-width: max(1520px, min(calc(100% - 160px), 2000px)); } }   /* the rewards section: same width, big screens only */
+
+html.nph-on .hero { position: relative; }
+.npr-hint { position: absolute; left: 50%; bottom: 26px; transform: translateX(-50%); z-index: 5; display: none; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 999px; background: rgba(255,255,255,.86); box-shadow: 0 6px 18px rgba(60,30,10,.12); font: 700 15px/1 Inter, "DM Sans", sans-serif; color: #1d1d1f !important; text-decoration: none !important; cursor: pointer; transition: opacity .3s; }
+.npr-hint.on { display: inline-flex; }
+.npr-hint.gone { opacity: 0; pointer-events: none; }
+.npr-hint i { font-style: normal; color: #D0021B; font-size: 17px; animation: nprb 2s ease-in-out infinite; }
+@keyframes nprb { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(3px); } }
+@media (prefers-reduced-motion: reduce) { .npr-hint i { animation: none; } }
