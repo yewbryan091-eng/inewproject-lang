@@ -1,0 +1,33 @@
+# iNewProject . once a day: count the open units of every e-Enquiry project and publish eenquiry-counts.json on the "counts"
+# branch (served by jsDelivr: .../inewproject-lang@counts/eenquiry-counts.json). Used by the New Launches cards' pill.
+# Turn off: GitHub > Actions > "e-Enquiry counts" > Disable workflow. The site keeps working; the pill falls back to "e-ENQUIRY AVAILABLE".
+name: e-Enquiry counts
+on:
+  schedule:
+    - cron: '30 22 * * *'   # 06:30 Malaysia time, every day
+  workflow_dispatch: {}
+permissions:
+  contents: write
+concurrency: { group: eenquiry-counts, cancel-in-progress: false }
+jobs:
+  count:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main, path: src }
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - name: Count
+        run: node src/tools/count_units.mjs "$RUNNER_TEMP/eenquiry-counts.json"
+      - name: Publish on the counts branch
+        run: |
+          git init -q pub && cd pub
+          git config user.name "iNewProject counts" && git config user.email "actions@users.noreply.github.com"
+          git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          if git fetch -q --depth 1 origin counts; then git checkout -q -b counts FETCH_HEAD; else git checkout -q --orphan counts; fi
+          cp "$RUNNER_TEMP/eenquiry-counts.json" eenquiry-counts.json
+          git add eenquiry-counts.json
+          git diff --cached --quiet && echo "no change" || git commit -q -m "counts $(date -u +%F)"
+          git push -q origin HEAD:counts
+          curl -fsS "https://purge.jsdelivr.net/gh/${{ github.repository }}@counts/eenquiry-counts.json" > /dev/null || true
