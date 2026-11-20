@@ -1,0 +1,28 @@
+/* iNewProject . listing page top, simpler, v1-2 (20 Nov 2026) = v1-1 + the first tab is back: "Overview" (BM "Gambaran",
+   中文 "概览"; the site's own tab, shorter words). It is the tab the site marks as active at the top of the page, so a visitor
+   always sees where they are; v1-1 hid it and nothing was marked until the first scroll. On the e-Enquiry pages, "Select Your
+   Unit" is the same soft pink pill as e-Enquiry on listings (first on phones). Everything else = v1-1. */
+.section-nav .snav-link:is([onclick*="'selling-points'"], [onclick*="'about-"], [onclick*="'masterplan'"], [onclick*="'amenities'"], [onclick*="'developer'"], [onclick*="'mortgage'"], [onclick*="'similar-projects'"]) { display: none !important; }
+
+.section-nav .snav-link[onclick*="'e-enquiry'"] { margin: 0 6px; padding: .45rem 1rem; border: 0; border-radius: 999px; background: #FCEBED; color: #C0001A !important; font-family: 'Inter', sans-serif; font-style: normal; }
+.section-nav .snav-link[onclick*="'e-enquiry'"]:hover, .section-nav .snav-link[onclick*="'e-enquiry'"].active { background: #F8D9DD; border-bottom-color: transparent; }
+@media (max-width: 767.98px) { .section-nav .snav-link[onclick*="'e-enquiry'"] { order: -1; } }
+
+body:has(.section-nav) #overview.section { padding-top: 28px; }
+
+@media (min-width: 375px) and (max-width: 575.98px) {
+  .hero-action-btns { gap: 6px; }
+  .hero-action-btns .hero-btn { padding-left: 13px; padding-right: 13px; }
+}
+
+/* v1-2: the Overview tab, short words in every language (the site's own text stays in the page, at size 0) */
+.section-nav .snav-link[onclick*="'overview'"] { font-size: 0 !important; }
+.section-nav .snav-link[onclick*="'overview'"]::after { content: "Overview"; font-size: 14px; }
+html[data-np-lang="ms"] .section-nav .snav-link[onclick*="'overview'"]::after { content: "Gambaran"; }
+html[data-np-lang="zh"] .section-nav .snav-link[onclick*="'overview'"]::after { content: "\6982\89C8"; }
+@media (min-width: 1080px) { .section-nav .snav-link[onclick*="'overview'"]::after { font-size: 15.556px; } }
+
+/* v1-2: e-Enquiry pages, "Select Your Unit" = the same soft pink pill (the action on that page); first on phones */
+.section-nav .snav-link[onclick*="'booking'"] { margin: 0 6px; padding: .45rem 1rem; border: 0; border-radius: 999px; background: #FCEBED; color: #C0001A !important; font-family: 'Inter', sans-serif; font-style: normal; }
+.section-nav .snav-link[onclick*="'booking'"]:hover, .section-nav .snav-link[onclick*="'booking'"].active { background: #F8D9DD; border-bottom-color: transparent; }
+@media (max-width: 767.98px) { .section-nav .snav-link[onclick*="'booking'"] { order: -1; } }
