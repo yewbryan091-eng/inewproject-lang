@@ -5297,6 +5297,7 @@ NP_DICT.ms={
 "The photos are from the show unit at the Tropicana Avan property gallery, taken by our team in November 2026.": "Gambar-gambar ini diambil di unit pameran galeri hartanah Tropicana Avan oleh pasukan kami pada November 2026.",
 "Details of the development will be shared here once Tropicana releases them.": "Butiran pembangunan ini akan dikongsi di sini sebaik sahaja Tropicana mengumumkannya.",
 "Its projects include Tropicana Gardens in Kota Damansara, Tropicana Metropark in Subang Jaya and Breeze Hill in Genting Highlands.": "Projeknya termasuk Tropicana Gardens di Kota Damansara, Tropicana Metropark di Subang Jaya dan Breeze Hill di Tanah Tinggi Genting.",
+"The retail shops at Tropicana Avan are part of an upcoming development by Tropicana Corporation Berhad in Cyberjaya, Selangor. Prices, sizes and other details will be shared here once the developer releases them.": "Kedai runcit di Tropicana Avan ialah sebahagian daripada pembangunan akan datang oleh Tropicana Corporation Berhad di Cyberjaya, Selangor. Harga, saiz dan butiran lain akan dikongsi di sini sebaik sahaja pemaju mengumumkannya.",
 "<0>Setia Mayuri, Semenyih, Selangor</0> · Double-storey semi-detached homes": "<0>Setia Mayuri, Semenyih, Selangor</0> · Rumah berkembar dua tingkat",
 "Double-storey semi-detached homes": "Rumah berkembar dua tingkat",
 "Setia Mayuri, Semenyih, Selangor": "Setia Mayuri, Semenyih, Selangor",
